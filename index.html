@@ -42,8 +42,8 @@ body { font-family: var(--font-body); background: var(--white); color: var(--dar
 /* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
 .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.nav-logo-mark { width: 44px; height: 44px; background: transparent; border-radius: 0; display: flex; align-items: center; justify-content: center; box-shadow: none; }
-.nav-logo-mark img { width: 44px; height: 44px; object-fit: contain; }
+.nav-logo-mark { width: 56px; height: 56px; background: transparent; border-radius: 0; display: flex; align-items: center; justify-content: center; box-shadow: none; }
+.nav-logo-mark img { width: 56px; height: 56px; object-fit: contain; }
 .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .nav-logo-text span:first-child { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--dark); letter-spacing: 0.04em; }
 .nav-logo-text span:last-child { font-size: 9px; font-weight: 400; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; }
@@ -71,10 +71,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px;
 .btn-primary:hover { background: var(--crimson-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,16,46,0.5); }
 .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--dark); text-decoration: none; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 16px 34px; border: 1px solid rgba(0,0,0,0.2); border-radius: 50px; transition: border-color 0.2s, background 0.2s, box-shadow 0.2s; }
 .btn-secondary:hover { border-color: var(--dark); background: rgba(0,0,0,0.04); box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
-.hero-badge { position: absolute; bottom: 48px; right: 80px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+.hero-badge { position: absolute; bottom: 48px; left: 80px; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
 .hero-badge-num { font-family: var(--font-display); font-size: 56px; font-weight: 700; color: var(--crimson); line-height: 1; }
 .hero-badge-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-align: right; }
-.hero-scroll { position: absolute; bottom: 48px; left: 80px; display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
+.hero-scroll { position: absolute; bottom: 48px; left: 260px; display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
 .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, transparent, var(--crimson)); }
 .hero-scroll-text { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; }
 
@@ -292,7 +292,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <nav>
 <a class="nav-logo" href="#">
 <div class="nav-logo-mark">
-<img alt="Prime Investment Brokers logo" src="https://static.wixstatic.com/media/41e133_3e29f368c0f74b2bab70a22ce908e364~mv2_d_1457_1421_s_2.png/v1/fill/w_252,h_246,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_3e29f368c0f74b2bab70a22ce908e364~mv2_d_1457_1421_s_2.png"/>
+<img alt="Prime Investment Brokers logo" src="./logo.png"/>
 </div>
 <div class="nav-logo-text">
 <span>Prime Investment</span>
@@ -313,7 +313,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <section class="hero">
 <div class="hero-bg-grid"></div>
 <div class="hero-slash"></div>
-<img alt="Prime Investment Brokers" class="hero-photo" src="https://static.wixstatic.com/media/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg/v1/fit/w_2500,h_1330,al_c/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg"/>
+<img alt="Prime Investment Brokers seal" class="hero-photo" src="https://static.wixstatic.com/media/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg/v1/fit/w_2500,h_1330,al_c/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg"/>
 <div class="hero-content">
 <div class="hero-eyebrow">
 <div class="hero-eyebrow-line"></div>
@@ -335,7 +335,8 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <a class="btn-secondary" href="#contact">Speak to a Broker</a>
 </div>
 </div>
-<div class="hero-badge">
+<div class="hero-seal" style="position:absolute;top:50%;right:80px;transform:translateY(-50%);opacity:0;animation:fadeUp 0.8s 0.8s forwards;text-align:center;"><img src="./logo.png" alt="Prime Investment Brokers seal" style="width:200px;height:200px;object-fit:contain;filter:drop-shadow(0 8px 32px rgba(200,16,46,0.18));display:block;margin:0 auto;" /></div>
+  <div class="hero-badge">
 <span class="hero-badge-num">100<span>+</span></span>
 <span class="hero-badge-label">Years Combined<br/>Experience</span>
 </div>
@@ -1023,7 +1024,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <div class="footer-brand">
 <a class="nav-logo" href="#" style="text-decoration:none;">
 <div class="nav-logo-mark">
-<img alt="Prime Investment Brokers" src="https://static.wixstatic.com/media/41e133_3e29f368c0f74b2bab70a22ce908e364~mv2_d_1457_1421_s_2.png/v1/fill/w_252,h_246,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_3e29f368c0f74b2bab70a22ce908e364~mv2_d_1457_1421_s_2.png"/>
+<img alt="Prime Investment Brokers seal" src="./logo.png"/>
 </div>
 <div class="nav-logo-text">
 <span>Prime Investment</span>
