@@ -238,6 +238,25 @@ footer { background: #080808; padding: 64px 80px 36px; }
 .footer-copy span { color:var(--crimson); }
 .footer-lic { font-size:11px; font-weight:300; color:var(--muted); }
 
+/* FLIP CARDS */
+.flip-card { cursor: pointer; }
+.flip-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1); }
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.prop-front, .prop-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; border-radius: inherit; }
+.prop-back { transform: rotateY(180deg); }
+.prop-front { background-color: var(--dark-mid); background-size: cover; background-position: center; }
+.team-front, .team-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; border-radius: inherit; }
+.team-back { transform: rotateY(180deg); background: var(--white); display: flex; flex-direction: column; }
+.team-front { background-color: var(--dark); background-size: cover; background-position: center; }
+.team-card.flip-card { min-height: 390px; }
+.team-front-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(5,5,5,0.10) 0%, rgba(5,5,5,0.78) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 22px 20px; }
+.team-front-overlay .team-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 3px; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+.team-front-overlay .team-title { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0; }
+.flip-hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); transition: color 0.25s; }
+.flip-hint svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
+.flip-card:hover .flip-hint { color: rgba(255,255,255,0.85); }
+.prop-front .property-overlay { background: linear-gradient(to top, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.35) 55%, rgba(0,0,0,0.08) 100%); }
+
 /* ANIMATIONS */
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
@@ -556,90 +575,220 @@ footer { background: #080808; padding: 64px 80px 36px; }
     </div>
     <a href="#contact" class="btn-secondary reveal">Inquire About Properties</a>
   </div>
-  <div class="properties-grid">
+  <div class="properties-grid" id="prop-grid">
     <!-- Featured -->
-    <div class="property-card featured reveal">
-      <img src="https://static.wixstatic.com/media/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg/v1/fill/w_980,h_580,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg" alt="Homewood Public Library" />
-      <div class="property-overlay">
-        <span class="property-tag">Special Use</span>
-        <div class="property-name">Homewood Public Library</div>
-        <div class="property-location">Homewood, AL</div>
+    <div class="property-card featured reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Special Use</span>
+            <div class="property-name">Homewood Public Library</div>
+            <div class="property-location">Homewood, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal property</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg/v1/fill/w_980,h_580,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg" alt="Homewood Public Library" />
+          <div class="property-overlay">
+            <span class="property-tag">Special Use</span>
+            <div class="property-name">Homewood Public Library</div>
+            <div class="property-location">Homewood, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="property-card reveal reveal-delay-1">
-      <img src="https://static.wixstatic.com/media/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg" alt="Poplar Bluff Regional Medical Center" />
-      <div class="property-overlay">
-        <span class="property-tag">Medical</span>
-        <div class="property-name">Poplar Bluff Regional Medical Center</div>
-        <div class="property-location">Poplar Bluff, MO</div>
+    <div class="property-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Medical</span>
+            <div class="property-name">Poplar Bluff Regional Medical Center</div>
+            <div class="property-location">Poplar Bluff, MO</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg" alt="Poplar Bluff Regional Medical Center" />
+          <div class="property-overlay">
+            <span class="property-tag">Medical</span>
+            <div class="property-name">Poplar Bluff Regional Medical Center</div>
+            <div class="property-location">Poplar Bluff, MO</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Row 2 -->
-    <div class="property-card reveal">
-      <img src="https://static.wixstatic.com/media/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg/v1/crop/x_0,y_0,w_800,h_427/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg" alt="Duplex Cullman" />
-      <div class="property-overlay">
-        <span class="property-tag">Multi-Family</span>
-        <div class="property-name">Duplex</div>
-        <div class="property-location">Cullman, AL</div>
+    <div class="property-card reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Duplex</div>
+            <div class="property-location">Cullman, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg/v1/crop/x_0,y_0,w_800,h_427/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg" alt="Duplex Cullman" />
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Duplex</div>
+            <div class="property-location">Cullman, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="property-card reveal reveal-delay-1">
-      <img src="https://static.wixstatic.com/media/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg/v1/crop/x_12,y_0,w_1076,h_597/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg" alt="Carousel Place Homes" />
-      <div class="property-overlay">
-        <span class="property-tag">Multi-Family</span>
-        <div class="property-name">Carousel Place Homes</div>
-        <div class="property-location">Meridian, MS</div>
+    <div class="property-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Carousel Place Homes</div>
+            <div class="property-location">Meridian, MS</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg/v1/crop/x_12,y_0,w_1076,h_597/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg" alt="Carousel Place Homes" />
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Carousel Place Homes</div>
+            <div class="property-location">Meridian, MS</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="property-card reveal reveal-delay-2">
-      <img src="https://static.wixstatic.com/media/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg/v1/crop/x_7,y_0,w_3250,h_1786/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg" alt="Gulfway Terrace" />
-      <div class="property-overlay">
-        <span class="property-tag">Commercial</span>
-        <div class="property-name">Gulfway Terrace</div>
-        <div class="property-location">New Orleans, LA</div>
+    <div class="property-card reveal reveal-delay-2 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Commercial</span>
+            <div class="property-name">Gulfway Terrace</div>
+            <div class="property-location">New Orleans, LA</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg/v1/crop/x_7,y_0,w_3250,h_1786/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg" alt="Gulfway Terrace" />
+          <div class="property-overlay">
+            <span class="property-tag">Commercial</span>
+            <div class="property-name">Gulfway Terrace</div>
+            <div class="property-location">New Orleans, LA</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Row 3 -->
-    <div class="property-card featured reveal">
-      <img src="https://static.wixstatic.com/media/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg/v1/fill/w_980,h_540,al_c,q_80,enc_avif,quality_auto/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg" alt="Physician's Regional Medical Center" />
-      <div class="property-overlay">
-        <span class="property-tag">Medical · Naples, FL</span>
-        <div class="property-name">Physician's Regional Medical Center</div>
-        <div class="property-location">212,000 SF · 120-Bed Replacement Hospital · Naples, FL</div>
-        <div class="property-detail">$900,000 in value engineering savings returned to Owner</div>
+    <div class="property-card featured reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Medical · Naples, FL</span>
+            <div class="property-name">Physician's Regional Medical Center</div>
+            <div class="property-location">212,000 SF · 120-Bed Replacement Hospital</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal property</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg/v1/fill/w_980,h_540,al_c,q_80,enc_avif,quality_auto/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg" alt="Physician's Regional Medical Center" />
+          <div class="property-overlay">
+            <span class="property-tag">Medical · Naples, FL</span>
+            <div class="property-name">Physician's Regional Medical Center</div>
+            <div class="property-location">212,000 SF · 120-Bed Replacement Hospital · Naples, FL</div>
+            <div class="property-detail">$900,000 in value engineering savings returned to Owner</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="property-card reveal reveal-delay-1">
-      <img src="https://static.wixstatic.com/media/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg" alt="Transportation Building" />
-      <div class="property-overlay">
-        <span class="property-tag">Commercial</span>
-        <div class="property-name">Transportation Building</div>
-        <div class="property-location">Birmingham, AL</div>
+    <div class="property-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Commercial</span>
+            <div class="property-name">Transportation Building</div>
+            <div class="property-location">Birmingham, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg" alt="Transportation Building" />
+          <div class="property-overlay">
+            <span class="property-tag">Commercial</span>
+            <div class="property-name">Transportation Building</div>
+            <div class="property-location">Birmingham, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Row 4 -->
-    <div class="property-card reveal">
-      <img src="https://static.wixstatic.com/media/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg" alt="Vestavia Hills High School" />
-      <div class="property-overlay">
-        <span class="property-tag">Special Use</span>
-        <div class="property-name">Vestavia Hills High School</div>
-        <div class="property-location">Vestavia Hills, AL</div>
+    <div class="property-card reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Special Use</span>
+            <div class="property-name">Vestavia Hills High School</div>
+            <div class="property-location">Vestavia Hills, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg" alt="Vestavia Hills High School" />
+          <div class="property-overlay">
+            <span class="property-tag">Special Use</span>
+            <div class="property-name">Vestavia Hills High School</div>
+            <div class="property-location">Vestavia Hills, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="property-card reveal reveal-delay-1">
-      <img src="https://static.wixstatic.com/media/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg" alt="Green Meadow Apartments" />
-      <div class="property-overlay">
-        <span class="property-tag">Multi-Family</span>
-        <div class="property-name">Green Meadow Apartments</div>
-        <div class="property-location">Birmingham, AL</div>
+    <div class="property-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Green Meadow Apartments</div>
+            <div class="property-location">Birmingham, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg" alt="Green Meadow Apartments" />
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Green Meadow Apartments</div>
+            <div class="property-location">Birmingham, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="property-card reveal reveal-delay-2">
-      <img src="https://static.wixstatic.com/media/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg" alt="Park Crest" />
-      <div class="property-overlay">
-        <span class="property-tag">Multi-Family</span>
-        <div class="property-name">Park Crest</div>
-        <div class="property-location">Birmingham, AL</div>
+    <div class="property-card reveal reveal-delay-2 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="prop-front">
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Park Crest</div>
+            <div class="property-location">Birmingham, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Tap to reveal</div>
+          </div>
+        </div>
+        <div class="prop-back">
+          <img src="https://static.wixstatic.com/media/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg" alt="Park Crest" />
+          <div class="property-overlay">
+            <span class="property-tag">Multi-Family</span>
+            <div class="property-name">Park Crest</div>
+            <div class="property-location">Birmingham, AL</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"/></svg>Tap to close</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -723,245 +872,380 @@ footer { background: #080808; padding: 64px 80px 36px; }
       <p class="section-sub reveal">An exceptional team of real estate agents, consultants, planners, and managers ready to respond to your needs.</p>
     </div>
   </div>
-  <div class="team-grid">
+  <div class="team-grid" id="team-grid">
 
     <!-- Ronnie Underwood -->
-    <div class="team-card reveal">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg" alt="Ronnie Underwood" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Ronnie Underwood</div>
-        <div class="team-title">President</div>
-        <div class="team-contact">
-          <a href="mailto:runderwood@prime-investmentbrokers.com">runderwood@prime-investmentbrokers.com</a>
-          <a href="tel:12053687807">205-368-7807</a>
+    <div class="team-card reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Ronnie Underwood</div>
+            <div class="team-title">President</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg" alt="Ronnie Underwood" /></div>
+          <div class="team-info">
+            <div class="team-name">Ronnie Underwood</div>
+            <div class="team-title">President</div>
+            <div class="team-contact">
+              <a href="mailto:runderwood@prime-investmentbrokers.com">runderwood@prime-investmentbrokers.com</a>
+              <a href="tel:12053687807">205-368-7807</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Michael German -->
-    <div class="team-card reveal reveal-delay-1">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_0b11ae2d75b14db18d85425348217b92~mv2.jpg/v1/crop/x_0,y_0,w_238,h_262/fill/w_400,h_440,al_c,q_80,enc_avif,quality_auto/MG.jpg" alt="Michael German" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Michael German</div>
-        <div class="team-title">Chief Operating Officer</div>
-        <div class="team-contact">
-          <a href="mailto:mgerman@prime-investmentbrokers.com">mgerman@prime-investmentbrokers.com</a>
-          <a href="tel:14046210006">404-621-0006</a>
+    <div class="team-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Michael German</div>
+            <div class="team-title">Chief Operating Officer</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_0b11ae2d75b14db18d85425348217b92~mv2.jpg/v1/crop/x_0,y_0,w_238,h_262/fill/w_400,h_440,al_c,q_80,enc_avif,quality_auto/MG.jpg" alt="Michael German" /></div>
+          <div class="team-info">
+            <div class="team-name">Michael German</div>
+            <div class="team-title">Chief Operating Officer</div>
+            <div class="team-contact">
+              <a href="mailto:mgerman@prime-investmentbrokers.com">mgerman@prime-investmentbrokers.com</a>
+              <a href="tel:14046210006">404-621-0006</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Natalie Hill Grace -->
-    <div class="team-card reveal reveal-delay-2">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg" alt="Natalie Hill Grace" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Natalie Hill Grace</div>
-        <div class="team-title">Vice President</div>
-        <div class="team-contact">
-          <a href="mailto:ngrace@prime-investmentbrokers.com">ngrace@prime-investmentbrokers.com</a>
-          <a href="tel:12055273036">205-527-3036</a>
+    <div class="team-card reveal reveal-delay-2 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Natalie Hill Grace</div>
+            <div class="team-title">Vice President</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg" alt="Natalie Hill Grace" /></div>
+          <div class="team-info">
+            <div class="team-name">Natalie Hill Grace</div>
+            <div class="team-title">Vice President</div>
+            <div class="team-contact">
+              <a href="mailto:ngrace@prime-investmentbrokers.com">ngrace@prime-investmentbrokers.com</a>
+              <a href="tel:12055273036">205-527-3036</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Eric Calhoun -->
-    <div class="team-card reveal reveal-delay-3">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg" alt="Eric Calhoun" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Eric Calhoun</div>
-        <div class="team-title">VP of Operations</div>
-        <div class="team-contact">
-          <a href="mailto:ecalhoun@prime-investmentbrokers.com">ecalhoun@prime-investmentbrokers.com</a>
-          <a href="tel:12052495040">205-249-5040</a>
+    <div class="team-card reveal reveal-delay-3 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Eric Calhoun</div>
+            <div class="team-title">VP of Operations</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg" alt="Eric Calhoun" /></div>
+          <div class="team-info">
+            <div class="team-name">Eric Calhoun</div>
+            <div class="team-title">VP of Operations</div>
+            <div class="team-contact">
+              <a href="mailto:ecalhoun@prime-investmentbrokers.com">ecalhoun@prime-investmentbrokers.com</a>
+              <a href="tel:12052495040">205-249-5040</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Michael Bowen -->
-    <div class="team-card reveal">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_ea1f237432a6476798c623126b935dc9~mv2.png/v1/crop/x_11,y_0,w_224,h_246/fill/w_400,h_440,al_c,q_85,enc_avif,quality_auto/Michael%20Bowen.png" alt="Michael Bowen" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Michael Bowen</div>
-        <div class="team-title">Consultant</div>
-        <div class="team-contact">
-          <a href="mailto:mbowen@prime-investmentbrokers.com">mbowen@prime-investmentbrokers.com</a>
-          <a href="tel:14402630406">440-263-0406</a>
+    <div class="team-card reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Michael Bowen</div>
+            <div class="team-title">Consultant</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_ea1f237432a6476798c623126b935dc9~mv2.png/v1/crop/x_11,y_0,w_224,h_246/fill/w_400,h_440,al_c,q_85,enc_avif,quality_auto/Michael%20Bowen.png" alt="Michael Bowen" /></div>
+          <div class="team-info">
+            <div class="team-name">Michael Bowen</div>
+            <div class="team-title">Consultant</div>
+            <div class="team-contact">
+              <a href="mailto:mbowen@prime-investmentbrokers.com">mbowen@prime-investmentbrokers.com</a>
+              <a href="tel:14402630406">440-263-0406</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Melvin Forbes -->
-    <div class="team-card reveal reveal-delay-1">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg" alt="Melvin Forbes" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Melvin Forbes</div>
-        <div class="team-title">Chief Strategy Officer</div>
-        <div class="team-contact">
-          <a href="mailto:mforbes@prime-investmentbrokers.com">mforbes@prime-investmentbrokers.com</a>
-          <a href="tel:12024388097">202-438-8097</a>
+    <div class="team-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Melvin Forbes</div>
+            <div class="team-title">Chief Strategy Officer</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg" alt="Melvin Forbes" /></div>
+          <div class="team-info">
+            <div class="team-name">Melvin Forbes</div>
+            <div class="team-title">Chief Strategy Officer</div>
+            <div class="team-contact">
+              <a href="mailto:mforbes@prime-investmentbrokers.com">mforbes@prime-investmentbrokers.com</a>
+              <a href="tel:12024388097">202-438-8097</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Robert Barnett -->
-    <div class="team-card reveal reveal-delay-2">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg" alt="Robert Barnett" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Robert Barnett</div>
-        <div class="team-title">Attorney / Consultant</div>
-        <div class="team-contact">
-          <a href="mailto:rbarnett@prime-investmentbrokers.com">rbarnett@prime-investmentbrokers.com</a>
-          <a href="tel:12059363055">205-936-3055</a>
+    <div class="team-card reveal reveal-delay-2 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Robert Barnett</div>
+            <div class="team-title">Attorney / Consultant</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg" alt="Robert Barnett" /></div>
+          <div class="team-info">
+            <div class="team-name">Robert Barnett</div>
+            <div class="team-title">Attorney / Consultant</div>
+            <div class="team-contact">
+              <a href="mailto:rbarnett@prime-investmentbrokers.com">rbarnett@prime-investmentbrokers.com</a>
+              <a href="tel:12059363055">205-936-3055</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Darrel Muhammad -->
-    <div class="team-card reveal reveal-delay-3">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg" alt="Darrel Muhammad" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Darrel Muhammad</div>
-        <div class="team-title">Associate Broker</div>
-        <div class="team-contact">
-          <a href="mailto:dmuhammad@prime-investmentbrokers.com">dmuhammad@prime-investmentbrokers.com</a>
-          <a href="tel:12057679997">205-767-9997</a>
+    <div class="team-card reveal reveal-delay-3 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Darrel Muhammad</div>
+            <div class="team-title">Associate Broker</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg" alt="Darrel Muhammad" /></div>
+          <div class="team-info">
+            <div class="team-name">Darrel Muhammad</div>
+            <div class="team-title">Associate Broker</div>
+            <div class="team-contact">
+              <a href="mailto:dmuhammad@prime-investmentbrokers.com">dmuhammad@prime-investmentbrokers.com</a>
+              <a href="tel:12057679997">205-767-9997</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Susan Hogg -->
-    <div class="team-card reveal">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg" alt="Susan Hogg" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Susan Hogg</div>
-        <div class="team-title">Associate Broker</div>
-        <div class="team-contact">
-          <a href="mailto:shogg@prime-investmentbrokers.com">shogg@prime-investmentbrokers.com</a>
-          <a href="tel:12052600740">205-260-0740</a>
+    <div class="team-card reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Susan Hogg</div>
+            <div class="team-title">Associate Broker</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg" alt="Susan Hogg" /></div>
+          <div class="team-info">
+            <div class="team-name">Susan Hogg</div>
+            <div class="team-title">Associate Broker</div>
+            <div class="team-contact">
+              <a href="mailto:shogg@prime-investmentbrokers.com">shogg@prime-investmentbrokers.com</a>
+              <a href="tel:12052600740">205-260-0740</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Mussa Nkinda -->
-    <div class="team-card reveal reveal-delay-1">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg" alt="Mussa Nkinda" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Mussa Nkinda</div>
-        <div class="team-title">Realtor</div>
-        <div class="team-contact">
-          <a href="mailto:mnkinda@prime-investmentbrokers.com">mnkinda@prime-investmentbrokers.com</a>
-          <a href="tel:12054472594">205-447-2594</a>
+    <div class="team-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Mussa Nkinda</div>
+            <div class="team-title">Realtor</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg" alt="Mussa Nkinda" /></div>
+          <div class="team-info">
+            <div class="team-name">Mussa Nkinda</div>
+            <div class="team-title">Realtor</div>
+            <div class="team-contact">
+              <a href="mailto:mnkinda@prime-investmentbrokers.com">mnkinda@prime-investmentbrokers.com</a>
+              <a href="tel:12054472594">205-447-2594</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Janie Adams -->
-    <div class="team-card reveal reveal-delay-2">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg" alt="Janie Adams" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Janie Adams</div>
-        <div class="team-title">Realtor</div>
-        <div class="team-contact">
-          <a href="mailto:jadams@prime-investmentbrokers.com">jadams@prime-investmentbrokers.com</a>
-          <a href="tel:18569827400">856-982-7400</a>
+    <div class="team-card reveal reveal-delay-2 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Janie Adams</div>
+            <div class="team-title">Realtor</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg" alt="Janie Adams" /></div>
+          <div class="team-info">
+            <div class="team-name">Janie Adams</div>
+            <div class="team-title">Realtor</div>
+            <div class="team-contact">
+              <a href="mailto:jadams@prime-investmentbrokers.com">jadams@prime-investmentbrokers.com</a>
+              <a href="tel:18569827400">856-982-7400</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Latasha Sims -->
-    <div class="team-card reveal reveal-delay-3">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg/v1/fill/w_400,h_488,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg" alt="Latasha Sims" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Latasha Sims</div>
-        <div class="team-title">Realtor</div>
-        <div class="team-contact">
-          <a href="mailto:lsims@prime-investmentbrokers.com">lsims@prime-investmentbrokers.com</a>
-          <a href="tel:12052969809">205-296-9809</a>
+    <div class="team-card reveal reveal-delay-3 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Latasha Sims</div>
+            <div class="team-title">Realtor</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg/v1/fill/w_400,h_488,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg" alt="Latasha Sims" /></div>
+          <div class="team-info">
+            <div class="team-name">Latasha Sims</div>
+            <div class="team-title">Realtor</div>
+            <div class="team-contact">
+              <a href="mailto:lsims@prime-investmentbrokers.com">lsims@prime-investmentbrokers.com</a>
+              <a href="tel:12052969809">205-296-9809</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Kimberly Harris -->
-    <div class="team-card reveal">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_f5b03fe9153c4f06bfa78cbaab3e3c8e~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Kimberly%20Harris.jpg" alt="Kimberly Harris" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Kimberly Harris</div>
-        <div class="team-title">Senior Property Manager</div>
-        <div class="team-contact">
-          <a href="mailto:kharris@prime-investmentbrokers.com">kharris@prime-investmentbrokers.com</a>
-          <a href="tel:12059089401">205-908-9401</a>
+    <div class="team-card reveal flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Kimberly Harris</div>
+            <div class="team-title">Senior Property Manager</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_f5b03fe9153c4f06bfa78cbaab3e3c8e~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Kimberly%20Harris.jpg" alt="Kimberly Harris" /></div>
+          <div class="team-info">
+            <div class="team-name">Kimberly Harris</div>
+            <div class="team-title">Senior Property Manager</div>
+            <div class="team-contact">
+              <a href="mailto:kharris@prime-investmentbrokers.com">kharris@prime-investmentbrokers.com</a>
+              <a href="tel:12059089401">205-908-9401</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Terri Harvill -->
-    <div class="team-card reveal reveal-delay-1">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg" alt="Terri Harvill" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">Terri Harvill</div>
-        <div class="team-title">Realtor</div>
-        <div class="team-contact">
-          <a href="mailto:tharvill@prime-investmentbrokers.com">tharvill@prime-investmentbrokers.com</a>
-          <a href="tel:12053084808">205-308-4808</a>
+    <div class="team-card reveal reveal-delay-1 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">Terri Harvill</div>
+            <div class="team-title">Realtor</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg" alt="Terri Harvill" /></div>
+          <div class="team-info">
+            <div class="team-name">Terri Harvill</div>
+            <div class="team-title">Realtor</div>
+            <div class="team-contact">
+              <a href="mailto:tharvill@prime-investmentbrokers.com">tharvill@prime-investmentbrokers.com</a>
+              <a href="tel:12053084808">205-308-4808</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- LaChandra T. Carr -->
-    <div class="team-card reveal reveal-delay-2">
-      <div class="team-photo">
-        <img src="https://static.wixstatic.com/media/41e133_a1f667fab8974983adf876e8bc318c42~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Carr.jpg" alt="LaChandra T. Carr" />
-      </div>
-      <div class="team-info">
-        <div class="team-name">LaChandra T. Carr</div>
-        <div class="team-title">Realtor</div>
-        <div class="team-contact">
-          <a href="mailto:lcarr@prime-investmentbrokers.com">lcarr@prime-investmentbrokers.com</a>
-          <a href="tel:12052380073">205-238-0073</a>
+    <div class="team-card reveal reveal-delay-2 flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="team-front">
+          <div class="team-front-overlay">
+            <div class="team-name">LaChandra T. Carr</div>
+            <div class="team-title">Realtor</div>
+            <div class="flip-hint"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Click to meet</div>
+          </div>
         </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+        <div class="team-back">
+          <div class="team-photo"><img src="https://static.wixstatic.com/media/41e133_a1f667fab8974983adf876e8bc318c42~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Carr.jpg" alt="LaChandra T. Carr" /></div>
+          <div class="team-info">
+            <div class="team-name">LaChandra T. Carr</div>
+            <div class="team-title">Realtor</div>
+            <div class="team-contact">
+              <a href="mailto:lcarr@prime-investmentbrokers.com">lcarr@prime-investmentbrokers.com</a>
+              <a href="tel:12052380073">205-238-0073</a>
+            </div>
+            <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="team-listings" target="_blank">View Listings →</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1119,6 +1403,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 </footer>
 
 <script>
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1129,6 +1414,48 @@ footer { background: #080808; padding: 64px 80px 36px; }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
+
+  // Mosaic: paint one seamless image across all front faces of a grid
+  function initMosaic(gridId, frontSelector, imageUrl) {
+    var grid = document.getElementById(gridId);
+    if (!grid) return;
+    function paint() {
+      var scrollY = window.scrollY || window.pageYOffset;
+      var scrollX = window.scrollX || window.pageXOffset;
+      var gRect = grid.getBoundingClientRect();
+      var gW = gRect.width;
+      var gH = grid.offsetHeight;
+      var gAbsTop = gRect.top + scrollY;
+      var gAbsLeft = gRect.left + scrollX;
+      grid.querySelectorAll(frontSelector).forEach(function(front) {
+        var card = front.closest('.property-card, .team-card');
+        if (!card) return;
+        var cRect = card.getBoundingClientRect();
+        var x = (cRect.left + scrollX) - gAbsLeft;
+        var y = (cRect.top + scrollY) - gAbsTop;
+        front.style.backgroundImage = 'url(' + imageUrl + ')';
+        front.style.backgroundSize = gW + 'px ' + gH + 'px';
+        front.style.backgroundPosition = (-x) + 'px ' + (-y) + 'px';
+      });
+    }
+    // Paint after layout settles
+    setTimeout(paint, 120);
+    window.addEventListener('resize', function() { setTimeout(paint, 120); });
+  }
+
+  // Properties mosaic — hero building image spread across all property tiles
+  initMosaic(
+    'prop-grid',
+    '.prop-front',
+    'https://static.wixstatic.com/media/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg/v1/fit/w_2500,h_1330,al_c/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg'
+  );
+
+  // Team mosaic — architectural image spread across all team name tiles
+  initMosaic(
+    'team-grid',
+    '.team-front',
+    'https://static.wixstatic.com/media/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg/v1/fill/w_1980,h_1200,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg'
+  );
 </script>
 
 </body>
