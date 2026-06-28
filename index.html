@@ -168,20 +168,22 @@ section { position: relative; }
 .highlight-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); }
 .properties-cta { text-align: center; }
 
-/* RENO / BEFORE-AFTER */
+/* RENO / BEFORE-AFTER COMPARE */
 .reno { background: var(--off-white); padding: 100px 80px; }
 .reno .section-headline { color: var(--dark); }
 .reno-intro { font-size: 15px; font-weight: 300; color: var(--muted); max-width: 560px; margin: 0 auto 56px; text-align: center; line-height: 1.7; }
-.reno-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.12); margin-bottom: 28px; }
-.reno-side { position: relative; aspect-ratio: 4/3; overflow: hidden; }
-.reno-side img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-.reno-side:hover img { transform: scale(1.04); }
-.reno-badge { position: absolute; top: 14px; left: 14px; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; }
-.reno-badge.before { background: rgba(20,20,20,0.82); color: rgba(255,255,255,0.85); }
-.reno-badge.after { background: var(--crimson); color: var(--white); }
-.reno-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 20px 16px 12px; font-size: 11px; font-weight: 400; letter-spacing: 0.08em; color: rgba(255,255,255,0.9); }
-.reno-divider { width: 2px; background: var(--white); position: relative; z-index: 2; }
-.reno-label span { color: var(--crimson); }
+.reno-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+.ba { --pos: 50%; position: relative; aspect-ratio: 4/3; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 8px 36px rgba(0,0,0,0.14); background: var(--dark); user-select: none; }
+.ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); z-index: 2; }
+.ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--white); transform: translateX(-1px); z-index: 3; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); pointer-events: none; }
+.ba-grip { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 38px; height: 38px; border-radius: 50%; background: var(--white); box-shadow: 0 3px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: var(--crimson); }
+.ba-grip svg { width: 18px; height: 18px; }
+.ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; z-index: 4; }
+.ba-tag { position: absolute; top: 12px; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 11px; border-radius: 50px; z-index: 3; pointer-events: none; }
+.ba-tag-before { left: 12px; background: rgba(20,20,20,0.82); color: rgba(255,255,255,0.9); }
+.ba-tag-after { right: 12px; background: var(--crimson); color: var(--white); }
+.ba-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 24px 14px 11px; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: #fff; background: linear-gradient(to top, rgba(0,0,0,0.82), transparent); pointer-events: none; }
 
 /* TEAM ROLODEX */
 .team { background: var(--off-white); padding: 100px 0 80px; }
@@ -282,6 +284,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 /* RESPONSIVE */
 @media(max-width:1100px){
   .rolodex-prev{left:calc(50% - 220px)} .rolodex-next{right:calc(50% - 220px)}
+  .reno-grid{grid-template-columns:repeat(2,1fr);max-width:760px}
   .properties-grid{grid-template-columns:repeat(2,1fr)}
   .property-card.featured{grid-column:span 2}
 }
@@ -310,8 +313,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
   footer{padding:48px 28px 28px}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px}
   .footer-bottom{flex-direction:column;align-items:flex-start}
-  .reno-pair{grid-template-columns:1fr;gap:4px}
-  .reno-side{aspect-ratio:16/9}
+  .reno-grid{grid-template-columns:1fr;max-width:480px}
   .highlight-grid{grid-template-columns:1fr}
 }
 @media(max-width:500px){
@@ -712,45 +714,35 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="section-eyebrow-text">Transformations</span>
 </div>
 <h2 class="section-headline reveal">Before &amp; After</h2>
-<p class="reno-intro reveal">See the difference Prime Investment Broker makes — from distressed asset to premium property.</p>
+<p class="reno-intro reveal">Drag the slider on each project to reveal the Prime Investment Broker transformation — from distressed asset to premium property.</p>
 </div>
-<!-- Pair 1: Cullman Duplex Exterior -->
-<div class="reno-pair reveal">
-<div class="reno-side">
-<img alt="Cullman Duplex — Before" src="https://static.wixstatic.com/media/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg/v1/crop/x_51,y_15,w_360,h_272/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg"/>
-<span class="reno-badge before">Before</span>
-<div class="reno-caption">Cullman Duplex — Exterior</div>
+<div class="reno-grid">
+<div class="ba reveal" style="--pos:50%">
+<img class="ba-after" src="https://static.wixstatic.com/media/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg/v1/crop/x_55,y_16,w_356,h_266/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg" alt="Cullman Duplex — Exterior — after"/>
+<img class="ba-before" src="https://static.wixstatic.com/media/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg/v1/crop/x_51,y_15,w_360,h_272/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg" alt="Cullman Duplex — Exterior — before"/>
+<div class="ba-handle"><span class="ba-grip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 7 4 12 9 17"/><polyline points="15 7 20 12 15 17"/></svg></span></div>
+<span class="ba-tag ba-tag-before">Before</span>
+<span class="ba-tag ba-tag-after">After</span>
+<input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Reveal Cullman Duplex — Exterior before and after"/>
+<div class="ba-cap">Cullman Duplex — Exterior</div>
 </div>
-<div class="reno-side">
-<img alt="Cullman Duplex — After" src="https://static.wixstatic.com/media/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg/v1/crop/x_55,y_16,w_356,h_266/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg"/>
-<span class="reno-badge after">After</span>
-<div class="reno-caption">Cullman Duplex — Exterior</div>
+<div class="ba reveal" style="--pos:50%">
+<img class="ba-after" src="https://static.wixstatic.com/media/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg/v1/crop/x_53,y_24,w_357,h_259/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg" alt="Interior Rehab — after"/>
+<img class="ba-before" src="https://static.wixstatic.com/media/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg/v1/crop/x_53,y_18,w_356,h_260/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg" alt="Interior Rehab — before"/>
+<div class="ba-handle"><span class="ba-grip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 7 4 12 9 17"/><polyline points="15 7 20 12 15 17"/></svg></span></div>
+<span class="ba-tag ba-tag-before">Before</span>
+<span class="ba-tag ba-tag-after">After</span>
+<input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Reveal Interior Rehab before and after"/>
+<div class="ba-cap">Interior Rehab</div>
 </div>
-</div>
-<!-- Pair 2: Interior Rehab -->
-<div class="reno-pair reveal">
-<div class="reno-side">
-<img alt="Interior — Before" src="https://static.wixstatic.com/media/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg/v1/crop/x_53,y_18,w_356,h_260/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg"/>
-<span class="reno-badge before">Before</span>
-<div class="reno-caption">Interior Rehab</div>
-</div>
-<div class="reno-side">
-<img alt="Interior — After" src="https://static.wixstatic.com/media/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg/v1/crop/x_53,y_24,w_357,h_259/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg"/>
-<span class="reno-badge after">After</span>
-<div class="reno-caption">Interior Rehab</div>
-</div>
-</div>
-<!-- Pair 3: Park Crest -->
-<div class="reno-pair reveal">
-<div class="reno-side">
-<img alt="Park Crest — Phase 1" src="https://static.wixstatic.com/media/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg/v1/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg"/>
-<span class="reno-badge before">Phase 1</span>
-<div class="reno-caption">Park Crest</div>
-</div>
-<div class="reno-side">
-<img alt="Park Crest — Phase 2" src="https://static.wixstatic.com/media/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg/v1/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg"/>
-<span class="reno-badge after">Phase 2</span>
-<div class="reno-caption">Park Crest</div>
+<div class="ba reveal" style="--pos:50%">
+<img class="ba-after" src="https://static.wixstatic.com/media/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg/v1/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg" alt="Park Crest — Phase 1 → 2 — after"/>
+<img class="ba-before" src="https://static.wixstatic.com/media/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg/v1/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg" alt="Park Crest — Phase 1 → 2 — before"/>
+<div class="ba-handle"><span class="ba-grip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 7 4 12 9 17"/><polyline points="15 7 20 12 15 17"/></svg></span></div>
+<span class="ba-tag ba-tag-before">Before</span>
+<span class="ba-tag ba-tag-after">After</span>
+<input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Reveal Park Crest — Phase 1 → 2 before and after"/>
+<div class="ba-cap">Park Crest — Phase 1 → 2</div>
 </div>
 </div>
 </section>
@@ -1192,6 +1184,16 @@ footer { background: #080808; padding: 64px 80px 36px; }
 
     render();
   })();
+
+  // Before/After comparison sliders
+  document.querySelectorAll('.ba').forEach(function(ba){
+    var range = ba.querySelector('.ba-range');
+    if(!range) return;
+    range.addEventListener('input', function(){
+      ba.style.setProperty('--pos', range.value + '%');
+    });
+  });
+
 </script>
 </body>
 </html>
