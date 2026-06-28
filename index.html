@@ -167,6 +167,14 @@ section { position: relative; }
 .highlight-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
 .highlight-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); }
 .properties-cta { text-align: center; }
+.prop-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+.prop-filter { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 20px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.12); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.25s ease; font-family: inherit; }
+.prop-filter:hover { border-color: var(--crimson); color: var(--crimson); }
+.prop-filter.active { background: var(--crimson); border-color: var(--crimson); color: #fff; box-shadow: 0 4px 16px rgba(200,16,46,0.3); }
+.prop-filter .prop-count { opacity: 0.6; margin-left: 5px; font-size: 9px; }
+.property-card.hide { display: none; }
+@keyframes popIn { from { opacity: 0; transform: scale(0.94) translateY(12px); } to { opacity: 1; transform: none; } }
+.property-card.pop { animation: popIn 0.45s cubic-bezier(0.2,0.7,0.2,1) both; }
 
 /* RENO / BEFORE-AFTER COMPARE */
 .reno { background: var(--off-white); padding: 100px 80px; }
@@ -587,100 +595,93 @@ footer { background: #080808; padding: 64px 80px 36px; }
 </div>
 <a class="btn-secondary reveal" href="#contact">Inquire About Properties</a>
 </div>
+<div class="prop-filters reveal">
+<button class="prop-filter active" data-filter="all">All<span class="prop-count">10</span></button>
+<button class="prop-filter" data-filter="multi">Multi-Family<span class="prop-count">4</span></button>
+<button class="prop-filter" data-filter="medical">Medical<span class="prop-count">2</span></button>
+<button class="prop-filter" data-filter="commercial">Commercial<span class="prop-count">2</span></button>
+<button class="prop-filter" data-filter="special">Special Use<span class="prop-count">2</span></button>
+</div>
 <div class="properties-grid">
-<!-- Featured -->
-<div class="property-card featured reveal">
-<img alt="Homewood Public Library" src="https://static.wixstatic.com/media/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg/v1/fill/w_980,h_580,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg"/>
+<div class="property-card pop" data-cat="special">
+<img alt="Homewood Public Library" loading="lazy" src="https://static.wixstatic.com/media/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Special Use</span>
 <div class="property-name">Homewood Public Library</div>
 <div class="property-location">Homewood, AL</div>
-
 </div>
 </div>
-<div class="property-card reveal reveal-delay-1">
-<img alt="Poplar Bluff Regional Medical Center" src="https://static.wixstatic.com/media/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg"/>
+<div class="property-card pop" data-cat="medical">
+<img alt="Poplar Bluff Regional Medical Center" loading="lazy" src="https://static.wixstatic.com/media/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Medical</span>
 <div class="property-name">Poplar Bluff Regional Medical Center</div>
 <div class="property-location">Poplar Bluff, MO</div>
-
 </div>
 </div>
-<!-- Row 2 -->
-<div class="property-card reveal">
-<img alt="Duplex Cullman" src="https://static.wixstatic.com/media/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg/v1/crop/x_0,y_0,w_800,h_427/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg"/>
+<div class="property-card pop" data-cat="multi">
+<img alt="Duplex" loading="lazy" src="https://static.wixstatic.com/media/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg/v1/crop/x_0,y_0,w_800,h_427/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Duplex</div>
 <div class="property-location">Cullman, AL</div>
-
 </div>
 </div>
-<div class="property-card reveal reveal-delay-1">
-<img alt="Carousel Place Homes" src="https://static.wixstatic.com/media/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg/v1/crop/x_12,y_0,w_1076,h_597/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg"/>
+<div class="property-card pop" data-cat="multi">
+<img alt="Carousel Place Homes" loading="lazy" src="https://static.wixstatic.com/media/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg/v1/crop/x_12,y_0,w_1076,h_597/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Carousel Place Homes</div>
 <div class="property-location">Meridian, MS</div>
-
 </div>
 </div>
-<div class="property-card reveal reveal-delay-2">
-<img alt="Gulfway Terrace" src="https://static.wixstatic.com/media/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg/v1/crop/x_7,y_0,w_3250,h_1786/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg"/>
+<div class="property-card pop" data-cat="commercial">
+<img alt="Gulfway Terrace" loading="lazy" src="https://static.wixstatic.com/media/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg/v1/crop/x_7,y_0,w_3250,h_1786/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Commercial</span>
 <div class="property-name">Gulfway Terrace</div>
 <div class="property-location">New Orleans, LA</div>
-
 </div>
 </div>
-<!-- Row 3 -->
-<div class="property-card featured reveal">
-<img alt="Physician's Regional Medical Center" src="https://static.wixstatic.com/media/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg/v1/fill/w_980,h_540,al_c,q_80,enc_avif,quality_auto/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg"/>
+<div class="property-card pop" data-cat="medical">
+<img alt="Physician's Regional Medical Center" loading="lazy" src="https://static.wixstatic.com/media/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg"/>
 <div class="property-overlay">
-<span class="property-tag">Medical · Naples, FL</span>
+<span class="property-tag">Medical</span>
 <div class="property-name">Physician's Regional Medical Center</div>
-<div class="property-location">212,000 SF · 120-Bed Replacement Hospital · Naples, FL</div>
-<div class="property-detail">$900,000 in value engineering savings returned to Owner</div>
-
+<div class="property-location">Naples, FL</div>
+<div class="property-detail">$900,000 in value-engineering savings returned to owner</div>
 </div>
 </div>
-<div class="property-card reveal reveal-delay-1">
-<img alt="Transportation Building" src="https://static.wixstatic.com/media/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg"/>
+<div class="property-card pop" data-cat="commercial">
+<img alt="Transportation Building" loading="lazy" src="https://static.wixstatic.com/media/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Commercial</span>
 <div class="property-name">Transportation Building</div>
 <div class="property-location">Birmingham, AL</div>
-
 </div>
 </div>
-<!-- Row 4 -->
-<div class="property-card reveal">
-<img alt="Vestavia Hills High School" src="https://static.wixstatic.com/media/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg"/>
+<div class="property-card pop" data-cat="special">
+<img alt="Vestavia Hills High School" loading="lazy" src="https://static.wixstatic.com/media/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Special Use</span>
 <div class="property-name">Vestavia Hills High School</div>
 <div class="property-location">Vestavia Hills, AL</div>
-
 </div>
 </div>
-<div class="property-card reveal reveal-delay-1">
-<img alt="Green Meadow Apartments" src="https://static.wixstatic.com/media/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg"/>
+<div class="property-card pop" data-cat="multi">
+<img alt="Green Meadow Apartments" loading="lazy" src="https://static.wixstatic.com/media/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Green Meadow Apartments</div>
 <div class="property-location">Birmingham, AL</div>
-
 </div>
 </div>
-<div class="property-card reveal reveal-delay-2">
-<img alt="Park Crest" src="https://static.wixstatic.com/media/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg"/>
+<div class="property-card pop" data-cat="multi">
+<img alt="Park Crest" loading="lazy" src="https://static.wixstatic.com/media/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg"/>
 <div class="property-overlay">
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Park Crest</div>
 <div class="property-location">Birmingham, AL</div>
-
 </div>
 </div>
 </div>
@@ -1193,6 +1194,31 @@ footer { background: #080808; padding: 64px 80px 36px; }
       ba.style.setProperty('--pos', range.value + '%');
     });
   });
+
+
+  // Properties portfolio filter
+  (function(){
+    var btns = document.querySelectorAll('.prop-filter');
+    var cards = document.querySelectorAll('.property-card');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        var f = btn.dataset.filter;
+        cards.forEach(function(c){
+          var match = (f === 'all' || c.dataset.cat === f);
+          c.classList.remove('pop');
+          if(match){
+            c.classList.remove('hide');
+            void c.offsetWidth;       // reflow to retrigger animation
+            c.classList.add('pop');
+          } else {
+            c.classList.add('hide');
+          }
+        });
+      });
+    });
+  })();
 
 </script>
 </body>
