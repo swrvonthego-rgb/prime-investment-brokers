@@ -60,7 +60,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px;
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; background: var(--white); overflow: hidden; padding-top: 72px; }
 .hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(200,16,46,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,16,46,0.04) 1px, transparent 1px); background-size: 80px 80px; }
 .hero-slash { position: absolute; top: -10%; right: -5%; width: 55%; height: 130%; background: linear-gradient(160deg, var(--off-white) 0%, rgba(200,16,46,0.04) 100%); clip-path: polygon(18% 0%,100% 0%,100% 100%,0% 100%); border-left: 2px solid rgba(200,16,46,0.15); }
-.hero-photo { position: absolute; right: 3%; top: 50%; transform: translateY(-50%); width: 46%; max-width: 620px; aspect-ratio: 1; object-fit: contain; opacity: 0.10; mix-blend-mode: luminosity; pointer-events: none; }
 .hero-content { position: relative; z-index: 2; padding: 0 80px; max-width: 760px; }
 .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
 .hero-eyebrow-line { width: 40px; height: 1px; background: var(--crimson); }
@@ -289,6 +288,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
   nav{padding:0 24px}
   .nav-links{display:none}
   .hero-content{padding:0 24px}
+  .hero-seal{display:none}
   .hero-badge{right:24px}
   .hero-scroll{left:24px}
   .about,.services,.properties,.reno,.exchange,.process,.team,.contact,footer{padding-left:28px;padding-right:28px}
@@ -347,7 +347,6 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <section class="hero">
 <div class="hero-bg-grid"></div>
 <div class="hero-slash"></div>
-<img alt="" aria-hidden="true" class="hero-photo" src="./logo.png"/>
 <div class="hero-content">
 <div class="hero-eyebrow">
 <div class="hero-eyebrow-line"></div>
@@ -369,7 +368,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <a class="btn-secondary" href="#contact">Speak to a Broker</a>
 </div>
 </div>
-<div class="hero-seal" style="position:absolute;top:50%;right:80px;transform:translateY(-50%);opacity:0;animation:fadeUp 0.8s 0.8s forwards;text-align:center;"><img alt="Prime Investment Brokers seal" src="./logo.png" style="width:200px;height:200px;object-fit:contain;filter:drop-shadow(0 8px 32px rgba(200,16,46,0.18));display:block;margin:0 auto;"/></div>
+<div class="hero-seal" style="position:absolute;top:50%;right:4%;transform:translateY(-50%);opacity:0;animation:fadeUp 0.8s 0.8s forwards;text-align:center;pointer-events:none;"><img alt="Prime Investment Brokers seal" src="./logo.png" style="width:clamp(320px,42vw,640px);height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 12px 40px rgba(200,16,46,0.22));display:block;margin:0 auto;"/></div>
 <div class="hero-badge">
 <span class="hero-badge-num">100<span>+</span></span>
 <span class="hero-badge-label">Years Combined<br/>Experience</span>
