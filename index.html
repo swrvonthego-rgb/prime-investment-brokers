@@ -209,8 +209,18 @@ section { position: relative; }
 .rcard[data-pos="far"] { transform: translateX(0) scale(0.4); opacity: 0; z-index: 0; pointer-events: none; }
 .rcard::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--crimson); z-index:2; }
 .rcard-photo { width: 100%; height: 240px; overflow: hidden; background: var(--dark); }
-.rcard-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.5s ease; }
+.rcard-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
 .rcard[data-pos="0"] .rcard-photo img { transform: scale(1.03); }
+/* TEAM LIGHTBOX */
+.lightbox { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 48px; background: rgba(8,8,8,0); visibility: hidden; opacity: 0; transition: opacity 0.4s ease, background 0.4s ease, visibility 0.4s; }
+.lightbox.open { visibility: visible; opacity: 1; background: rgba(8,8,8,0.93); }
+.lightbox img { max-width: 88vw; max-height: 84vh; object-fit: contain; border-radius: 10px; box-shadow: 0 30px 90px rgba(0,0,0,0.65); transform: scale(0.55); opacity: 0; transition: transform 0.5s cubic-bezier(0.2,0.85,0.2,1), opacity 0.4s ease; }
+.lightbox.open img { transform: scale(1); opacity: 1; }
+.lightbox-close { position: absolute; top: 26px; right: 30px; width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.3s ease, background 0.25s ease, border-color 0.25s ease; backdrop-filter: blur(4px); z-index: 2; }
+.lightbox-close:hover { background: var(--crimson); border-color: var(--crimson); transform: rotate(90deg); }
+.lightbox-close svg { width: 22px; height: 22px; }
+.lightbox-caption { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.92); font-family: var(--font-display); font-size: 18px; letter-spacing: 0.03em; text-align: center; padding: 0 24px; }
+.lightbox-hint { display: block; font-family: var(--font-body, inherit); font-size: 10px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
 .rcard-info { padding: 20px 22px 22px; }
 .rcard-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
 .rcard-title { font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--crimson); margin-bottom: 14px; }
@@ -1220,6 +1230,48 @@ footer { background: #080808; padding: 64px 80px 36px; }
     });
   })();
 
+  // Team photo lightbox — click to view full original image
+  (function(){
+    var lb = document.getElementById('teamLightbox');
+    if(!lb) return;
+    var lbImg = lb.querySelector('.lightbox-img');
+    var lbCap = lb.querySelector('.lightbox-caption');
+    var closeBtn = lb.querySelector('.lightbox-close');
+    function fullSrc(src){ return src.split('/v1/')[0]; }
+    function open(img){
+      var card = img.closest('.rcard');
+      var name = card ? card.querySelector('.rcard-name') : null;
+      var title = card ? card.querySelector('.rcard-title') : null;
+      lbImg.src = fullSrc(img.currentSrc || img.src);
+      lbImg.alt = img.alt || '';
+      lbCap.innerHTML = (name ? name.textContent : '') +
+        (title ? ' &mdash; ' + title.textContent : '') +
+        '<span class="lightbox-hint">Click the &times; or anywhere to close</span>';
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.rcard-photo img').forEach(function(img){
+      img.addEventListener('click', function(e){ e.stopPropagation(); open(img); });
+    });
+    closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  })();
+
 </script>
+<!-- TEAM PHOTO LIGHTBOX -->
+<div class="lightbox" id="teamLightbox" aria-hidden="true" role="dialog" aria-label="Team member photo">
+<button class="lightbox-close" aria-label="Close enlarged image" type="button">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+</button>
+<img class="lightbox-img" src="" alt=""/>
+<div class="lightbox-caption"></div>
+</div>
 </body>
 </html>
