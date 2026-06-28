@@ -142,31 +142,44 @@ section { position: relative; }
 .exchange-rule p { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.65; }
 
 /* PROPERTIES */
-.properties { background: var(--white); padding: 120px 80px; }
+.properties { background: var(--white); padding: 100px 80px 80px; }
 .properties .section-headline { color: var(--dark); }
-.properties-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 40px; }
-.properties-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 48px; }
-.property-card { position: relative; height: 300px; overflow: hidden; background: var(--dark-mid); border-radius: var(--radius-lg); box-shadow: var(--shadow-dark); }
-.property-card.featured { grid-column: span 2; height: 380px; }
-.property-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; opacity: 0.75; }
-.property-card:hover img { transform: scale(1.04); opacity: 0.9; }
-.property-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.2) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; transition: background 0.3s; }
-.property-card:hover .property-overlay { background: linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(200,16,46,0.08) 100%); }
-.property-tag { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); background: var(--crimson); padding: 5px 12px; border-radius: 50px; margin-bottom: 10px; align-self: flex-start; box-shadow: 0 2px 10px rgba(200,16,46,0.4); }
-.property-name { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
-.property-card.featured .property-name { font-size: 28px; }
-.property-location { font-size: 12px; font-weight: 400; color: var(--light-gray); }
-.property-detail { font-size: 11px; color: var(--gold); margin-top: 6px; font-weight: 400; }
+.properties-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; gap: 40px; }
+.properties-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 40px; }
+.property-card { position: relative; height: 280px; overflow: hidden; background: var(--dark-mid); border-radius: var(--radius-lg); box-shadow: 0 4px 24px rgba(0,0,0,0.13); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.property-card.featured { grid-column: span 2; height: 360px; }
+.property-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.18), 0 2px 12px rgba(200,16,46,0.1); }
+.property-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; opacity: 0.78; }
+.property-card:hover img { transform: scale(1.04); opacity: 0.88; }
+.property-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.94) 0%, rgba(8,8,8,0.15) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 26px; }
+.property-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); background: var(--crimson); padding: 4px 11px; border-radius: 50px; margin-bottom: 9px; align-self: flex-start; }
+.property-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 3px; line-height: 1.2; }
+.property-card.featured .property-name { font-size: 26px; }
+.property-location { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.65); }
+.property-detail { font-size: 11px; color: var(--gold); margin-top: 5px; font-weight: 400; }
+/* Highlight cards */
+.highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+.highlight-card { background: var(--off-white); padding: 32px 36px; border-left: 3px solid var(--crimson); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.highlight-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+.highlight-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 10px; }
+.highlight-name { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--dark); margin-bottom: 10px; }
+.highlight-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.highlight-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); }
 .properties-cta { text-align: center; }
 
-/* RENO GALLERY */
-.reno { background: var(--off-white); padding: 80px 80px; }
-.reno .section-headline { color: var(--dark); margin-bottom: 40px; }
-.reno-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-.reno-item { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: var(--radius-md); box-shadow: 0 4px 20px rgba(0,0,0,0.35); }
-.reno-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-.reno-item:hover img { transform: scale(1.06); }
-.reno-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.75); padding: 8px 12px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+/* RENO / BEFORE-AFTER */
+.reno { background: var(--off-white); padding: 100px 80px; }
+.reno .section-headline { color: var(--dark); }
+.reno-intro { font-size: 15px; font-weight: 300; color: var(--muted); max-width: 560px; margin: 0 auto 56px; text-align: center; line-height: 1.7; }
+.reno-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.12); margin-bottom: 28px; }
+.reno-side { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+.reno-side img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.reno-side:hover img { transform: scale(1.04); }
+.reno-badge { position: absolute; top: 14px; left: 14px; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; }
+.reno-badge.before { background: rgba(20,20,20,0.82); color: rgba(255,255,255,0.85); }
+.reno-badge.after { background: var(--crimson); color: var(--white); }
+.reno-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 20px 16px 12px; font-size: 11px; font-weight: 400; letter-spacing: 0.08em; color: rgba(255,255,255,0.9); }
+.reno-divider { width: 2px; background: var(--white); position: relative; z-index: 2; }
 .reno-label span { color: var(--crimson); }
 
 /* TEAM ROLODEX */
@@ -294,7 +307,9 @@ footer { background: #080808; padding: 64px 80px 36px; }
   footer{padding:48px 28px 28px}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px}
   .footer-bottom{flex-direction:column;align-items:flex-start}
-  .reno-grid{grid-template-columns:repeat(2,1fr)}
+  .reno-pair{grid-template-columns:1fr;gap:4px}
+  .reno-side{aspect-ratio:16/9}
+  .highlight-grid{grid-template-columns:1fr}
 }
 @media(max-width:500px){
   .rcard{width:260px;height:400px} .rolodex-stage{width:260px;height:400px}
@@ -352,8 +367,8 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <a class="btn-secondary" href="#contact">Speak to a Broker</a>
 </div>
 </div>
-<div class="hero-seal" style="position:absolute;top:50%;right:80px;transform:translateY(-50%);opacity:0;animation:fadeUp 0.8s 0.8s forwards;text-align:center;"><img src="./logo.png" alt="Prime Investment Brokers seal" style="width:200px;height:200px;object-fit:contain;filter:drop-shadow(0 8px 32px rgba(200,16,46,0.18));display:block;margin:0 auto;" /></div>
-  <div class="hero-badge">
+<div class="hero-seal" style="position:absolute;top:50%;right:80px;transform:translateY(-50%);opacity:0;animation:fadeUp 0.8s 0.8s forwards;text-align:center;"><img alt="Prime Investment Brokers seal" src="./logo.png" style="width:200px;height:200px;object-fit:contain;filter:drop-shadow(0 8px 32px rgba(200,16,46,0.18));display:block;margin:0 auto;"/></div>
+<div class="hero-badge">
 <span class="hero-badge-num">100<span>+</span></span>
 <span class="hero-badge-label">Years Combined<br/>Experience</span>
 </div>
@@ -576,7 +591,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Special Use</span>
 <div class="property-name">Homewood Public Library</div>
 <div class="property-location">Homewood, AL</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <div class="property-card reveal reveal-delay-1">
@@ -585,7 +600,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Medical</span>
 <div class="property-name">Poplar Bluff Regional Medical Center</div>
 <div class="property-location">Poplar Bluff, MO</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <!-- Row 2 -->
@@ -595,7 +610,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Duplex</div>
 <div class="property-location">Cullman, AL</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <div class="property-card reveal reveal-delay-1">
@@ -604,7 +619,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Carousel Place Homes</div>
 <div class="property-location">Meridian, MS</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <div class="property-card reveal reveal-delay-2">
@@ -613,7 +628,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Commercial</span>
 <div class="property-name">Gulfway Terrace</div>
 <div class="property-location">New Orleans, LA</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <!-- Row 3 -->
@@ -624,7 +639,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <div class="property-name">Physician's Regional Medical Center</div>
 <div class="property-location">212,000 SF · 120-Bed Replacement Hospital · Naples, FL</div>
 <div class="property-detail">$900,000 in value engineering savings returned to Owner</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <div class="property-card reveal reveal-delay-1">
@@ -633,7 +648,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Commercial</span>
 <div class="property-name">Transportation Building</div>
 <div class="property-location">Birmingham, AL</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <!-- Row 4 -->
@@ -643,7 +658,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Special Use</span>
 <div class="property-name">Vestavia Hills High School</div>
 <div class="property-location">Vestavia Hills, AL</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <div class="property-card reveal reveal-delay-1">
@@ -652,7 +667,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Green Meadow Apartments</div>
 <div class="property-location">Birmingham, AL</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 <div class="property-card reveal reveal-delay-2">
@@ -661,23 +676,23 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <span class="property-tag">Multi-Family</span>
 <div class="property-name">Park Crest</div>
 <div class="property-location">Birmingham, AL</div>
-<div class="flip-hint"><svg viewbox="0 0 24 24"><path d="M9 21H3v-6M15 3h6v6M3 15l7-7M21 9l-7 7"></path></svg>Tap to close</div>
+
 </div>
 </div>
 </div>
 <!-- USPS & Keystones highlight -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px;">
-<div class="reveal" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'" style="background:var(--off-white);padding:36px;border-left:3px solid var(--crimson);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);transition:transform 0.25s,box-shadow 0.25s;">
-<span style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--crimson);display:block;margin-bottom:10px;">Commercial · Built 2000</span>
-<h3 style="font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--dark);margin-bottom:8px;">United States Post Office</h3>
-<p style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:12px;">Developed and managed 20,000 sq ft of retail, office, and warehouse space. Features energy efficiency units and R-rating insulation. Currently leasing to the USPS under a 25-year term.</p>
-<span style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gold);">$2,800,000</span>
+<div class="highlight-grid">
+<div class="highlight-card reveal">
+<span class="highlight-eyebrow">Commercial · Built 2000</span>
+<h3 class="highlight-name">United States Post Office</h3>
+<p class="highlight-desc">Developed and managed 20,000 sq ft of retail, office, and warehouse space. Features energy efficiency units and R-rating insulation. Currently leasing to the USPS under a 25-year term.</p>
+<span class="highlight-value">$2,800,000</span>
 </div>
-<div class="reveal reveal-delay-1" onmouseenter="this.style.transform='translateY(-4px)'" onmouseleave="this.style.transform='none'" style="background:var(--off-white);padding:36px;border-left:3px solid var(--crimson);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);transition:transform 0.25s,box-shadow 0.25s;">
-<span style="font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--crimson);display:block;margin-bottom:10px;">Industrial · Built 2003</span>
-<h3 style="font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--dark);margin-bottom:8px;">Keystones Court</h3>
-<p style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:12px;">Developed and managed 50,000 sq ft of warehouse and light industrial space. Currently leased to one tenant under a 20-year lease. 100% occupied.</p>
-<span style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gold);">$1,200,000</span>
+<div class="highlight-card reveal reveal-delay-1">
+<span class="highlight-eyebrow">Industrial · Built 2003</span>
+<h3 class="highlight-name">Keystones Court</h3>
+<p class="highlight-desc">Developed and managed 50,000 sq ft of warehouse and light industrial space. Currently leased to one tenant under a 20-year lease. 100% occupied.</p>
+<span class="highlight-value">$1,200,000</span>
 </div>
 </div>
 <div class="properties-cta">
@@ -688,266 +703,272 @@ footer { background: #080808; padding: 64px 80px 36px; }
 </div>
 </section>
 <!-- RENOVATION GALLERY -->
-<section class="reno">
-<div class="section-eyebrow reveal">
+<section class="reno" id="gallery">
+<div style="text-align:center;">
+<div class="section-eyebrow reveal" style="justify-content:center;">
 <div class="section-eyebrow-line"></div>
 <span class="section-eyebrow-text">Transformations</span>
 </div>
 <h2 class="section-headline reveal">Before &amp; After</h2>
-<div class="reno-grid">
-<div class="reno-item reveal">
-<img alt="Before renovation" src="https://static.wixstatic.com/media/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg/v1/crop/x_51,y_15,w_360,h_272/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg"/>
-<div class="reno-label"><span>Before</span> — Cullman Duplex</div>
+<p class="reno-intro reveal">See the difference Prime Investment Broker makes — from distressed asset to premium property.</p>
 </div>
-<div class="reno-item reveal reveal-delay-1">
-<img alt="After renovation" src="https://static.wixstatic.com/media/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg/v1/crop/x_55,y_16,w_356,h_266/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg"/>
-<div class="reno-label"><span style="color:var(--gold-light);">After</span> — Cullman Duplex</div>
+<!-- Pair 1: Cullman Duplex Exterior -->
+<div class="reno-pair reveal">
+<div class="reno-side">
+<img alt="Cullman Duplex — Before" src="https://static.wixstatic.com/media/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg/v1/crop/x_51,y_15,w_360,h_272/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_a3347c7f01c74703a1027fa298a13b9d~mv2.jpg"/>
+<span class="reno-badge before">Before</span>
+<div class="reno-caption">Cullman Duplex — Exterior</div>
 </div>
-<div class="reno-item reveal reveal-delay-2">
-<img alt="Before renovation 2" src="https://static.wixstatic.com/media/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg/v1/crop/x_53,y_18,w_356,h_260/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg"/>
-<div class="reno-label"><span>Before</span> — Interior</div>
+<div class="reno-side">
+<img alt="Cullman Duplex — After" src="https://static.wixstatic.com/media/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg/v1/crop/x_55,y_16,w_356,h_266/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_1ef9c0452ba944c38c9401ac7ad06793~mv2.jpg"/>
+<span class="reno-badge after">After</span>
+<div class="reno-caption">Cullman Duplex — Exterior</div>
 </div>
-<div class="reno-item reveal reveal-delay-3">
-<img alt="After renovation 2" src="https://static.wixstatic.com/media/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg/v1/crop/x_53,y_24,w_357,h_259/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg"/>
-<div class="reno-label"><span style="color:var(--gold-light);">After</span> — Interior</div>
 </div>
-<div class="reno-item reveal">
-<img alt="Property exterior" src="https://static.wixstatic.com/media/41e133_bf19f9161f4d4b4781971adbe2a69adc~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_bf19f9161f4d4b4781971adbe2a69adc~mv2.jpg"/>
-<div class="reno-label">Exterior Renovation</div>
+<!-- Pair 2: Interior Rehab -->
+<div class="reno-pair reveal">
+<div class="reno-side">
+<img alt="Interior — Before" src="https://static.wixstatic.com/media/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg/v1/crop/x_53,y_18,w_356,h_260/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_0fdde6a7b7ea479cae5b7bec73671b89~mv2.jpg"/>
+<span class="reno-badge before">Before</span>
+<div class="reno-caption">Interior Rehab</div>
 </div>
-<div class="reno-item reveal reveal-delay-1">
-<img alt="Renovation completed" src="https://static.wixstatic.com/media/41e133_4a4835409905492197232472a200cad0~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_4a4835409905492197232472a200cad0~mv2.jpg"/>
-<div class="reno-label">Completed Rehab</div>
+<div class="reno-side">
+<img alt="Interior — After" src="https://static.wixstatic.com/media/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg/v1/crop/x_53,y_24,w_357,h_259/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_a7b5890b0478472983d1d0c753a7b692~mv2.jpg"/>
+<span class="reno-badge after">After</span>
+<div class="reno-caption">Interior Rehab</div>
 </div>
-<div class="reno-item reveal reveal-delay-2">
-<img alt="Park Crest renovation" src="https://static.wixstatic.com/media/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg"/>
-<div class="reno-label">Park Crest — Phase 1</div>
 </div>
-<div class="reno-item reveal reveal-delay-3">
-<img alt="Park Crest Phase 2" src="https://static.wixstatic.com/media/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg/v1/fill/w_600,h_450,al_c,q_80,enc_avif,quality_auto/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg"/>
-<div class="reno-label">Park Crest — Phase 2</div>
+<!-- Pair 3: Park Crest -->
+<div class="reno-pair reveal">
+<div class="reno-side">
+<img alt="Park Crest — Phase 1" src="https://static.wixstatic.com/media/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg/v1/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_e9ced38dbaba47c7a1f9fe7dfb40a8ec~mv2.jpg"/>
+<span class="reno-badge before">Phase 1</span>
+<div class="reno-caption">Park Crest</div>
+</div>
+<div class="reno-side">
+<img alt="Park Crest — Phase 2" src="https://static.wixstatic.com/media/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg/v1/fill/w_800,h_600,al_c,q_80,enc_avif,quality_auto/41e133_cde062cd34de473ebfa5de740c984dd5~mv2.jpg"/>
+<span class="reno-badge after">Phase 2</span>
+<div class="reno-caption">Park Crest</div>
 </div>
 </div>
 </section>
 <!-- TEAM -->
 <section class="team" id="team">
-  <div class="team-header reveal">
-    <div class="section-eyebrow" style="justify-content:center;"><div class="section-eyebrow-line"></div><span class="section-eyebrow-text">Our Team</span></div>
-    <h2 class="section-headline">Meet Our Professionals</h2>
-    <p class="section-sub" style="margin:0 auto;text-align:center;">An exceptional team of real estate agents, consultants, planners, and managers ready to respond to your needs.</p>
-  </div>
-
-  <div class="rolodex reveal">
-    <button class="rolodex-btn rolodex-prev" aria-label="Previous">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <div class="rolodex-stage">
-    <div class="rcard" data-index="0" data-pos="0">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg" alt="Ronnie Underwood" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Ronnie Underwood</div>
-        <div class="rcard-title">President</div>
-        <div class="rcard-contact">
-          <a href="mailto:runderwood@prime-investmentbrokers.com">runderwood@prime-investmentbrokers.com</a>
-          <a href="tel:12053687807">205-368-7807</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="1" data-pos="1">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_0b11ae2d75b14db18d85425348217b92~mv2.jpg/v1/crop/x_0,y_0,w_238,h_262/fill/w_400,h_440,al_c,q_80,enc_avif,quality_auto/MG.jpg" alt="Michael German" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Michael German</div>
-        <div class="rcard-title">Chief Operating Officer</div>
-        <div class="rcard-contact">
-          <a href="mailto:mgerman@prime-investmentbrokers.com">mgerman@prime-investmentbrokers.com</a>
-          <a href="tel:14046210006">404-621-0006</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="2" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg" alt="Natalie Hill Grace" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Natalie Hill Grace</div>
-        <div class="rcard-title">Vice President</div>
-        <div class="rcard-contact">
-          <a href="mailto:ngrace@prime-investmentbrokers.com">ngrace@prime-investmentbrokers.com</a>
-          <a href="tel:12055273036">205-527-3036</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="3" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg" alt="Eric Calhoun" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Eric Calhoun</div>
-        <div class="rcard-title">VP of Operations</div>
-        <div class="rcard-contact">
-          <a href="mailto:ecalhoun@prime-investmentbrokers.com">ecalhoun@prime-investmentbrokers.com</a>
-          <a href="tel:12052495040">205-249-5040</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="4" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_ea1f237432a6476798c623126b935dc9~mv2.png/v1/crop/x_11,y_0,w_224,h_246/fill/w_400,h_440,al_c,q_85,enc_avif,quality_auto/Michael%20Bowen.png" alt="Michael Bowen" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Michael Bowen</div>
-        <div class="rcard-title">Consultant</div>
-        <div class="rcard-contact">
-          <a href="mailto:mbowen@prime-investmentbrokers.com">mbowen@prime-investmentbrokers.com</a>
-          <a href="tel:14402630406">440-263-0406</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="5" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg" alt="Melvin Forbes" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Melvin Forbes</div>
-        <div class="rcard-title">Chief Strategy Officer</div>
-        <div class="rcard-contact">
-          <a href="mailto:mforbes@prime-investmentbrokers.com">mforbes@prime-investmentbrokers.com</a>
-          <a href="tel:12024388097">202-438-8097</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="6" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg" alt="Robert Barnett" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Robert Barnett</div>
-        <div class="rcard-title">Attorney / Consultant</div>
-        <div class="rcard-contact">
-          <a href="mailto:rbarnett@prime-investmentbrokers.com">rbarnett@prime-investmentbrokers.com</a>
-          <a href="tel:12059363055">205-936-3055</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="7" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg" alt="Darrel Muhammad" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Darrel Muhammad</div>
-        <div class="rcard-title">Associate Broker</div>
-        <div class="rcard-contact">
-          <a href="mailto:dmuhammad@prime-investmentbrokers.com">dmuhammad@prime-investmentbrokers.com</a>
-          <a href="tel:12057679997">205-767-9997</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="8" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg" alt="Susan Hogg" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Susan Hogg</div>
-        <div class="rcard-title">Associate Broker</div>
-        <div class="rcard-contact">
-          <a href="mailto:shogg@prime-investmentbrokers.com">shogg@prime-investmentbrokers.com</a>
-          <a href="tel:12052600740">205-260-0740</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="9" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg" alt="Mussa Nkinda" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Mussa Nkinda</div>
-        <div class="rcard-title">Realtor</div>
-        <div class="rcard-contact">
-          <a href="mailto:mnkinda@prime-investmentbrokers.com">mnkinda@prime-investmentbrokers.com</a>
-          <a href="tel:12054472594">205-447-2594</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="10" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg" alt="Janie Adams" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Janie Adams</div>
-        <div class="rcard-title">Realtor</div>
-        <div class="rcard-contact">
-          <a href="mailto:jadams@prime-investmentbrokers.com">jadams@prime-investmentbrokers.com</a>
-          <a href="tel:18569827400">856-982-7400</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="11" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg/v1/fill/w_400,h_488,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg" alt="Latasha Sims" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Latasha Sims</div>
-        <div class="rcard-title">Realtor</div>
-        <div class="rcard-contact">
-          <a href="mailto:lsims@prime-investmentbrokers.com">lsims@prime-investmentbrokers.com</a>
-          <a href="tel:12052969809">205-296-9809</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="12" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_f5b03fe9153c4f06bfa78cbaab3e3c8e~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Kimberly%20Harris.jpg" alt="Kimberly Harris" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Kimberly Harris</div>
-        <div class="rcard-title">Senior Property Manager</div>
-        <div class="rcard-contact">
-          <a href="mailto:kharris@prime-investmentbrokers.com">kharris@prime-investmentbrokers.com</a>
-          <a href="tel:12059089401">205-908-9401</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="13" data-pos="far">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg" alt="Terri Harvill" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">Terri Harvill</div>
-        <div class="rcard-title">Realtor</div>
-        <div class="rcard-contact">
-          <a href="mailto:tharvill@prime-investmentbrokers.com">tharvill@prime-investmentbrokers.com</a>
-          <a href="tel:12053084808">205-308-4808</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    <div class="rcard" data-index="14" data-pos="-1">
-      <div class="rcard-photo"><img src="https://static.wixstatic.com/media/41e133_a1f667fab8974983adf876e8bc318c42~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Carr.jpg" alt="LaChandra T. Carr" loading="lazy" /></div>
-      <div class="rcard-info">
-        <div class="rcard-name">LaChandra T. Carr</div>
-        <div class="rcard-title">Realtor</div>
-        <div class="rcard-contact">
-          <a href="mailto:lcarr@prime-investmentbrokers.com">lcarr@prime-investmentbrokers.com</a>
-          <a href="tel:12052380073">205-238-0073</a>
-        </div>
-        <a href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" class="rcard-listings" target="_blank">View Listings →</a>
-      </div>
-    </div>
-    </div>
-    <button class="rolodex-btn rolodex-next" aria-label="Next">
-      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-  </div>
-
-  <div class="rolodex-meta">
-    <div class="rolodex-dots">
-    <button class="rdot  active" data-goto="0" aria-label="Go to Ronnie Underwood"></button>
-    <button class="rdot" data-goto="1" aria-label="Go to Michael German"></button>
-    <button class="rdot" data-goto="2" aria-label="Go to Natalie Hill Grace"></button>
-    <button class="rdot" data-goto="3" aria-label="Go to Eric Calhoun"></button>
-    <button class="rdot" data-goto="4" aria-label="Go to Michael Bowen"></button>
-    <button class="rdot" data-goto="5" aria-label="Go to Melvin Forbes"></button>
-    <button class="rdot" data-goto="6" aria-label="Go to Robert Barnett"></button>
-    <button class="rdot" data-goto="7" aria-label="Go to Darrel Muhammad"></button>
-    <button class="rdot" data-goto="8" aria-label="Go to Susan Hogg"></button>
-    <button class="rdot" data-goto="9" aria-label="Go to Mussa Nkinda"></button>
-    <button class="rdot" data-goto="10" aria-label="Go to Janie Adams"></button>
-    <button class="rdot" data-goto="11" aria-label="Go to Latasha Sims"></button>
-    <button class="rdot" data-goto="12" aria-label="Go to Kimberly Harris"></button>
-    <button class="rdot" data-goto="13" aria-label="Go to Terri Harvill"></button>
-    <button class="rdot" data-goto="14" aria-label="Go to LaChandra T. Carr"></button>
-    </div>
-    <div class="rolodex-counter">1 / 15</div>
-  </div>
+<div class="team-header reveal">
+<div class="section-eyebrow" style="justify-content:center;"><div class="section-eyebrow-line"></div><span class="section-eyebrow-text">Our Team</span></div>
+<h2 class="section-headline">Meet Our Professionals</h2>
+<p class="section-sub" style="margin:0 auto;text-align:center;">An exceptional team of real estate agents, consultants, planners, and managers ready to respond to your needs.</p>
+</div>
+<div class="rolodex reveal">
+<button aria-label="Previous" class="rolodex-btn rolodex-prev">
+<svg viewbox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+</button>
+<div class="rolodex-stage">
+<div class="rcard" data-index="0" data-pos="0">
+<div class="rcard-photo"><img alt="Ronnie Underwood" loading="lazy" src="https://static.wixstatic.com/media/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_9c9cfcbad75944a780f3cd1b1b13ad2e~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Ronnie Underwood</div>
+<div class="rcard-title">President</div>
+<div class="rcard-contact">
+<a href="mailto:runderwood@prime-investmentbrokers.com">runderwood@prime-investmentbrokers.com</a>
+<a href="tel:12053687807">205-368-7807</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="1" data-pos="1">
+<div class="rcard-photo"><img alt="Michael German" loading="lazy" src="https://static.wixstatic.com/media/41e133_0b11ae2d75b14db18d85425348217b92~mv2.jpg/v1/crop/x_0,y_0,w_238,h_262/fill/w_400,h_440,al_c,q_80,enc_avif,quality_auto/MG.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Michael German</div>
+<div class="rcard-title">Chief Operating Officer</div>
+<div class="rcard-contact">
+<a href="mailto:mgerman@prime-investmentbrokers.com">mgerman@prime-investmentbrokers.com</a>
+<a href="tel:14046210006">404-621-0006</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="2" data-pos="far">
+<div class="rcard-photo"><img alt="Natalie Hill Grace" loading="lazy" src="https://static.wixstatic.com/media/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_edd6bb8656e04dcbbefbd9e97b8dc3d2~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Natalie Hill Grace</div>
+<div class="rcard-title">Vice President</div>
+<div class="rcard-contact">
+<a href="mailto:ngrace@prime-investmentbrokers.com">ngrace@prime-investmentbrokers.com</a>
+<a href="tel:12055273036">205-527-3036</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="3" data-pos="far">
+<div class="rcard-photo"><img alt="Eric Calhoun" loading="lazy" src="https://static.wixstatic.com/media/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_1d57065875774890869df9baedbac1f8~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Eric Calhoun</div>
+<div class="rcard-title">VP of Operations</div>
+<div class="rcard-contact">
+<a href="mailto:ecalhoun@prime-investmentbrokers.com">ecalhoun@prime-investmentbrokers.com</a>
+<a href="tel:12052495040">205-249-5040</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="4" data-pos="far">
+<div class="rcard-photo"><img alt="Michael Bowen" loading="lazy" src="https://static.wixstatic.com/media/41e133_ea1f237432a6476798c623126b935dc9~mv2.png/v1/crop/x_11,y_0,w_224,h_246/fill/w_400,h_440,al_c,q_85,enc_avif,quality_auto/Michael%20Bowen.png"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Michael Bowen</div>
+<div class="rcard-title">Consultant</div>
+<div class="rcard-contact">
+<a href="mailto:mbowen@prime-investmentbrokers.com">mbowen@prime-investmentbrokers.com</a>
+<a href="tel:14402630406">440-263-0406</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="5" data-pos="far">
+<div class="rcard-photo"><img alt="Melvin Forbes" loading="lazy" src="https://static.wixstatic.com/media/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_ab5c1d6fcf054ef4a3331f5f11d92b8e~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Melvin Forbes</div>
+<div class="rcard-title">Chief Strategy Officer</div>
+<div class="rcard-contact">
+<a href="mailto:mforbes@prime-investmentbrokers.com">mforbes@prime-investmentbrokers.com</a>
+<a href="tel:12024388097">202-438-8097</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="6" data-pos="far">
+<div class="rcard-photo"><img alt="Robert Barnett" loading="lazy" src="https://static.wixstatic.com/media/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_cd33d8762b8e42f991550d9c8e3ab238~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Robert Barnett</div>
+<div class="rcard-title">Attorney / Consultant</div>
+<div class="rcard-contact">
+<a href="mailto:rbarnett@prime-investmentbrokers.com">rbarnett@prime-investmentbrokers.com</a>
+<a href="tel:12059363055">205-936-3055</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="7" data-pos="far">
+<div class="rcard-photo"><img alt="Darrel Muhammad" loading="lazy" src="https://static.wixstatic.com/media/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_98e77854905c49a68e2c3b051f8d911a~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Darrel Muhammad</div>
+<div class="rcard-title">Associate Broker</div>
+<div class="rcard-contact">
+<a href="mailto:dmuhammad@prime-investmentbrokers.com">dmuhammad@prime-investmentbrokers.com</a>
+<a href="tel:12057679997">205-767-9997</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="8" data-pos="far">
+<div class="rcard-photo"><img alt="Susan Hogg" loading="lazy" src="https://static.wixstatic.com/media/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_be4354425fc541d7b9bf1d55833db89d~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Susan Hogg</div>
+<div class="rcard-title">Associate Broker</div>
+<div class="rcard-contact">
+<a href="mailto:shogg@prime-investmentbrokers.com">shogg@prime-investmentbrokers.com</a>
+<a href="tel:12052600740">205-260-0740</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="9" data-pos="far">
+<div class="rcard-photo"><img alt="Mussa Nkinda" loading="lazy" src="https://static.wixstatic.com/media/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_8a23ef61a82047f6aee8cf4f7744e54b~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Mussa Nkinda</div>
+<div class="rcard-title">Realtor</div>
+<div class="rcard-contact">
+<a href="mailto:mnkinda@prime-investmentbrokers.com">mnkinda@prime-investmentbrokers.com</a>
+<a href="tel:12054472594">205-447-2594</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="10" data-pos="far">
+<div class="rcard-photo"><img alt="Janie Adams" loading="lazy" src="https://static.wixstatic.com/media/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_b50ecb9c8a9b4508b44b15aa7b170b8b~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Janie Adams</div>
+<div class="rcard-title">Realtor</div>
+<div class="rcard-contact">
+<a href="mailto:jadams@prime-investmentbrokers.com">jadams@prime-investmentbrokers.com</a>
+<a href="tel:18569827400">856-982-7400</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="11" data-pos="far">
+<div class="rcard-photo"><img alt="Latasha Sims" loading="lazy" src="https://static.wixstatic.com/media/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg/v1/fill/w_400,h_488,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_fb397484a465461a8265d24bb482d3eb~mv2.jpeg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Latasha Sims</div>
+<div class="rcard-title">Realtor</div>
+<div class="rcard-contact">
+<a href="mailto:lsims@prime-investmentbrokers.com">lsims@prime-investmentbrokers.com</a>
+<a href="tel:12052969809">205-296-9809</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="12" data-pos="far">
+<div class="rcard-photo"><img alt="Kimberly Harris" loading="lazy" src="https://static.wixstatic.com/media/41e133_f5b03fe9153c4f06bfa78cbaab3e3c8e~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Kimberly%20Harris.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Kimberly Harris</div>
+<div class="rcard-title">Senior Property Manager</div>
+<div class="rcard-contact">
+<a href="mailto:kharris@prime-investmentbrokers.com">kharris@prime-investmentbrokers.com</a>
+<a href="tel:12059089401">205-908-9401</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="13" data-pos="far">
+<div class="rcard-photo"><img alt="Terri Harvill" loading="lazy" src="https://static.wixstatic.com/media/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg/v1/fill/w_400,h_440,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_71a48df0e3f14af4911c5dce6bb43085~mv2.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">Terri Harvill</div>
+<div class="rcard-title">Realtor</div>
+<div class="rcard-contact">
+<a href="mailto:tharvill@prime-investmentbrokers.com">tharvill@prime-investmentbrokers.com</a>
+<a href="tel:12053084808">205-308-4808</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+<div class="rcard" data-index="14" data-pos="-1">
+<div class="rcard-photo"><img alt="LaChandra T. Carr" loading="lazy" src="https://static.wixstatic.com/media/41e133_a1f667fab8974983adf876e8bc318c42~mv2.jpg/v1/fill/w_400,h_488,al_c,q_80,enc_avif,quality_auto/Carr.jpg"/></div>
+<div class="rcard-info">
+<div class="rcard-name">LaChandra T. Carr</div>
+<div class="rcard-title">Realtor</div>
+<div class="rcard-contact">
+<a href="mailto:lcarr@prime-investmentbrokers.com">lcarr@prime-investmentbrokers.com</a>
+<a href="tel:12052380073">205-238-0073</a>
+</div>
+<a class="rcard-listings" href="http://GALMLS.paragonrels.com/idx/idx.aspx?Mls=GALMLS&amp;Subscriber=f8257f90-e440-4aec-a71c-b3854de5ece9" target="_blank">View Listings →</a>
+</div>
+</div>
+</div>
+<button aria-label="Next" class="rolodex-btn rolodex-next">
+<svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</button>
+</div>
+<div class="rolodex-meta">
+<div class="rolodex-dots">
+<button aria-label="Go to Ronnie Underwood" class="rdot active" data-goto="0"></button>
+<button aria-label="Go to Michael German" class="rdot" data-goto="1"></button>
+<button aria-label="Go to Natalie Hill Grace" class="rdot" data-goto="2"></button>
+<button aria-label="Go to Eric Calhoun" class="rdot" data-goto="3"></button>
+<button aria-label="Go to Michael Bowen" class="rdot" data-goto="4"></button>
+<button aria-label="Go to Melvin Forbes" class="rdot" data-goto="5"></button>
+<button aria-label="Go to Robert Barnett" class="rdot" data-goto="6"></button>
+<button aria-label="Go to Darrel Muhammad" class="rdot" data-goto="7"></button>
+<button aria-label="Go to Susan Hogg" class="rdot" data-goto="8"></button>
+<button aria-label="Go to Mussa Nkinda" class="rdot" data-goto="9"></button>
+<button aria-label="Go to Janie Adams" class="rdot" data-goto="10"></button>
+<button aria-label="Go to Latasha Sims" class="rdot" data-goto="11"></button>
+<button aria-label="Go to Kimberly Harris" class="rdot" data-goto="12"></button>
+<button aria-label="Go to Terri Harvill" class="rdot" data-goto="13"></button>
+<button aria-label="Go to LaChandra T. Carr" class="rdot" data-goto="14"></button>
+</div>
+<div class="rolodex-counter">1 / 15</div>
+</div>
 </section>
 <!-- PROCESS -->
 <section class="process" id="process">
