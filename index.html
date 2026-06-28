@@ -60,7 +60,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px;
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; background: var(--white); overflow: hidden; padding-top: 72px; }
 .hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(200,16,46,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,16,46,0.04) 1px, transparent 1px); background-size: 80px 80px; }
 .hero-slash { position: absolute; top: -10%; right: -5%; width: 55%; height: 130%; background: linear-gradient(160deg, var(--off-white) 0%, rgba(200,16,46,0.04) 100%); clip-path: polygon(18% 0%,100% 0%,100% 100%,0% 100%); border-left: 2px solid rgba(200,16,46,0.15); }
-.hero-photo { position: absolute; right: 0; top: 0; bottom: 0; width: 50%; object-fit: cover; opacity: 0.18; mix-blend-mode: luminosity; }
+.hero-photo { position: absolute; right: 3%; top: 50%; transform: translateY(-50%); width: 46%; max-width: 620px; aspect-ratio: 1; object-fit: contain; opacity: 0.10; mix-blend-mode: luminosity; pointer-events: none; }
 .hero-content { position: relative; z-index: 2; padding: 0 80px; max-width: 760px; }
 .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
 .hero-eyebrow-line { width: 40px; height: 1px; background: var(--crimson); }
@@ -347,7 +347,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <section class="hero">
 <div class="hero-bg-grid"></div>
 <div class="hero-slash"></div>
-<img alt="Prime Investment Brokers seal" class="hero-photo" src="https://static.wixstatic.com/media/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg/v1/fit/w_2500,h_1330,al_c/204898_1f0f7841e6e04a52bc69375c0915e9b8~mv2.jpg"/>
+<img alt="" aria-hidden="true" class="hero-photo" src="./logo.png"/>
 <div class="hero-content">
 <div class="hero-eyebrow">
 <div class="hero-eyebrow-line"></div>
