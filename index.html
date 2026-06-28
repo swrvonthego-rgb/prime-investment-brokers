@@ -274,6 +274,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 
 /* ANIMATIONS */
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeSeal { from{opacity:0;transform:translateY(-46%)} to{opacity:1;transform:translateY(-50%)} }
 .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 .reveal-delay-1{transition-delay:0.1s} .reveal-delay-2{transition-delay:0.2s} .reveal-delay-3{transition-delay:0.3s} .reveal-delay-4{transition-delay:0.4s}
@@ -368,7 +369,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
 <a class="btn-secondary" href="#contact">Speak to a Broker</a>
 </div>
 </div>
-<div class="hero-seal" style="position:absolute;top:50%;right:4%;transform:translateY(-50%);opacity:0;animation:fadeUp 0.8s 0.8s forwards;text-align:center;pointer-events:none;"><img alt="Prime Investment Brokers seal" src="./logo.png" style="width:clamp(320px,42vw,640px);height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 12px 40px rgba(200,16,46,0.22));display:block;margin:0 auto;"/></div>
+<div class="hero-seal" style="position:absolute;top:50%;right:6%;transform:translateY(-50%);opacity:0;animation:fadeSeal 0.8s 0.8s forwards;text-align:center;pointer-events:none;"><img alt="Prime Investment Brokers seal" src="./logo.png" style="width:clamp(300px,36vw,540px);height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 12px 40px rgba(200,16,46,0.22));display:block;margin:0 auto;"/></div>
 <div class="hero-badge">
 <span class="hero-badge-num">100<span>+</span></span>
 <span class="hero-badge-label">Years Combined<br/>Experience</span>
