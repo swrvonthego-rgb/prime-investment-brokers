@@ -343,6 +343,10 @@ footer { background: #080808; padding: 64px 80px 36px; }
   .services,.properties,.reno,.exchange,.process,.team,.contact{padding-top:80px;padding-bottom:80px}
   .properties-grid,.properties-grid.uniform{grid-template-columns:1fr;grid-auto-rows:240px}
   .properties-grid .property-card,.properties-grid .property-card:nth-child(n){grid-column:span 1 !important;grid-row:span 1 !important}
+  .house-explorer{grid-template-columns:1fr;gap:32px}
+  .house-svg{max-width:320px}
+  .house-panel{min-height:0}
+  .house-panel-title{font-size:28px}
   .exchange-grid{grid-template-columns:1fr;gap:40px}
   .process-steps{grid-template-columns:1fr 1fr;gap:48px}
   .process-steps::before{display:none}
@@ -380,6 +384,44 @@ footer { background: #080808; padding: 64px 80px 36px; }
 .intro-skip { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.25); border-radius: 50px; padding: 9px 22px; cursor: pointer; backdrop-filter: blur(5px); transition: all 0.25s ease; z-index: 2; }
 .intro-skip:hover { background: var(--crimson); border-color: var(--crimson); color: #fff; }
 .intro.mini .intro-skip { display: none; }
+/* PROPERTIES — HOUSE EXPLORER */
+.house-explorer { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 48px; }
+.house-stage { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.house-svg { width: 100%; max-width: 440px; height: auto; overflow: visible; }
+.house-part { cursor: pointer; outline: none; }
+.house-part .hl { fill: #e9e4dc; stroke: #cfc7ba; stroke-width: 1.5; transition: fill 0.35s ease, stroke 0.35s ease, transform 0.35s ease; }
+.house-part .roof { fill: #2a2a2e; stroke: #1c1c1f; }
+.house-part .chimney { fill: #3a3a3f; }
+.house-part .win { fill: rgba(200,16,46,0.22); stroke: #cfc7ba; stroke-width: 1.5; transition: fill 0.35s ease; }
+.house-part .door { fill: var(--crimson); }
+.house-part .knob { fill: #fff; }
+.house-part .base { fill: #d8d1c6; }
+.house-part:hover .hl, .house-part:focus-visible .hl { fill: #f3d9de; stroke: var(--crimson); }
+.house-part:hover .roof, .house-part:focus-visible .roof { fill: #43232b; stroke: var(--crimson); }
+.house-part:hover .win, .house-part:focus-visible .win { fill: rgba(200,16,46,0.5); }
+.house-part.active .hl { fill: rgba(200,16,46,0.16); stroke: var(--crimson); stroke-width: 2.5; }
+.house-part.active .roof { fill: var(--crimson); stroke: #8a0c20; }
+.house-part.active .win { fill: rgba(255,255,255,0.85); }
+.house-part.active .base { fill: var(--crimson); }
+.house-hint { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.house-hint::before { content: ''; width: 22px; height: 1px; background: var(--crimson); }
+.house-panel { min-height: 360px; }
+.house-panel-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 10px; }
+.house-panel-title { font-family: var(--font-display); font-size: 34px; font-weight: 600; color: var(--dark); line-height: 1.05; margin-bottom: 14px; }
+.house-panel-sub { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 26px; max-width: 460px; }
+.house-results { display: flex; flex-direction: column; gap: 12px; }
+.house-card { display: flex; align-items: center; gap: 16px; padding: 12px; border-radius: 14px; background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,0.07); cursor: pointer; opacity: 0; transform: translateY(14px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.house-card.in { animation: houseCardIn 0.45s cubic-bezier(0.2,0.7,0.2,1) forwards; }
+@keyframes houseCardIn { to { opacity: 1; transform: translateY(0); } }
+.house-card:hover { transform: translateX(5px); box-shadow: 0 10px 30px rgba(200,16,46,0.14); }
+.house-card-thumb { width: 92px; height: 70px; flex: none; border-radius: 10px; overflow: hidden; background: var(--dark-mid); }
+.house-card-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.house-card-body { flex: 1; min-width: 0; }
+.house-card-name { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--dark); line-height: 1.2; margin-bottom: 3px; }
+.house-card-loc { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.house-card-loc::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--crimson); flex: none; }
+.house-card-arrow { flex: none; color: var(--crimson); opacity: 0; transform: translateX(-6px); transition: opacity 0.3s, transform 0.3s; }
+.house-card:hover .house-card-arrow { opacity: 1; transform: translateX(0); }
 </style>
 </head>
 <body>
@@ -659,97 +701,44 @@ footer { background: #080808; padding: 64px 80px 36px; }
 </div>
 <a class="btn-secondary reveal" href="#contact">Inquire About Properties</a>
 </div>
-<div class="prop-filters reveal">
-<button class="prop-filter active" data-filter="all">All<span class="prop-count">10</span></button>
-<button class="prop-filter" data-filter="multi">Multi-Family<span class="prop-count">4</span></button>
-<button class="prop-filter" data-filter="medical">Medical<span class="prop-count">2</span></button>
-<button class="prop-filter" data-filter="commercial">Commercial<span class="prop-count">2</span></button>
-<button class="prop-filter" data-filter="special">Special Use<span class="prop-count">2</span></button>
+<div class="house-explorer reveal">
+<div class="house-stage">
+<svg class="house-svg" viewBox="0 0 460 430" role="img" aria-label="Interactive portfolio house">
+<!-- ground shadow -->
+<ellipse cx="230" cy="404" rx="180" ry="14" fill="rgba(0,0,0,0.06)"/>
+<!-- ROOF = Special Use -->
+<g class="house-part" data-cat="special" tabindex="0" role="button" aria-label="Special Use properties">
+<polygon class="hl roof" points="230,40 70,170 390,170"/>
+<rect class="chimney" x="300" y="78" width="26" height="54" rx="3"/>
+</g>
+<!-- UPPER FLOOR = Multi-Family -->
+<g class="house-part" data-cat="multi" tabindex="0" role="button" aria-label="Multi-Family properties">
+<rect class="hl wall" x="95" y="170" width="270" height="92"/>
+<rect class="win" x="130" y="195" width="48" height="44" rx="3"/>
+<rect class="win" x="282" y="195" width="48" height="44" rx="3"/>
+</g>
+<!-- GROUND FLOOR = Commercial -->
+<g class="house-part" data-cat="commercial" tabindex="0" role="button" aria-label="Commercial properties">
+<rect class="hl wall" x="95" y="262" width="270" height="118"/>
+<rect class="door" x="205" y="300" width="50" height="80" rx="4"/>
+<circle class="knob" cx="246" cy="342" r="3.2"/>
+<rect class="win" x="125" y="300" width="42" height="40" rx="3"/>
+<rect class="win" x="293" y="300" width="42" height="40" rx="3"/>
+</g>
+<!-- FOUNDATION = Medical -->
+<g class="house-part" data-cat="medical" tabindex="0" role="button" aria-label="Medical properties">
+<rect class="hl base" x="78" y="380" width="304" height="22" rx="3"/>
+</g>
+</svg>
+<p class="house-hint">Click a part of the house to explore that portfolio</p>
 </div>
-<div class="properties-grid">
-<div class="property-card pop" data-cat="special">
-<img alt="Homewood Public Library" loading="lazy" src="https://static.wixstatic.com/media/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Special Use</span>
-<div class="property-name">Homewood Public Library</div>
-<div class="property-location">Homewood, AL</div>
+<div class="house-panel">
+<span class="house-panel-eyebrow" id="housePanelCat">The Build</span>
+<h3 class="house-panel-title" id="housePanelTitle">Explore What We Build</h3>
+<p class="house-panel-sub" id="housePanelSub">Each part of the house opens a different corner of our portfolio. Tap the roof, the floors, or the foundation to see what we&rsquo;ve built.</p>
+<div class="house-results" id="houseResults"></div>
 </div>
-</div>
-<div class="property-card pop" data-cat="medical">
-<img alt="Poplar Bluff Regional Medical Center" loading="lazy" src="https://static.wixstatic.com/media/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Medical</span>
-<div class="property-name">Poplar Bluff Regional Medical Center</div>
-<div class="property-location">Poplar Bluff, MO</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="multi">
-<img alt="Duplex" loading="lazy" src="https://static.wixstatic.com/media/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg/v1/crop/x_0,y_0,w_800,h_427/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Multi-Family</span>
-<div class="property-name">Duplex</div>
-<div class="property-location">Cullman, AL</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="multi">
-<img alt="Carousel Place Homes" loading="lazy" src="https://static.wixstatic.com/media/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg/v1/crop/x_12,y_0,w_1076,h_597/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Multi-Family</span>
-<div class="property-name">Carousel Place Homes</div>
-<div class="property-location">Meridian, MS</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="commercial">
-<img alt="Gulfway Terrace" loading="lazy" src="https://static.wixstatic.com/media/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg/v1/crop/x_7,y_0,w_3250,h_1786/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Commercial</span>
-<div class="property-name">Gulfway Terrace</div>
-<div class="property-location">New Orleans, LA</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="medical">
-<img alt="Physician's Regional Medical Center" loading="lazy" src="https://static.wixstatic.com/media/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Medical</span>
-<div class="property-name">Physician's Regional Medical Center</div>
-<div class="property-location">Naples, FL</div>
-<div class="property-detail">$900,000 in value-engineering savings returned to owner</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="commercial">
-<img alt="Transportation Building" loading="lazy" src="https://static.wixstatic.com/media/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Commercial</span>
-<div class="property-name">Transportation Building</div>
-<div class="property-location">Birmingham, AL</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="special">
-<img alt="Vestavia Hills High School" loading="lazy" src="https://static.wixstatic.com/media/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Special Use</span>
-<div class="property-name">Vestavia Hills High School</div>
-<div class="property-location">Vestavia Hills, AL</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="multi">
-<img alt="Green Meadow Apartments" loading="lazy" src="https://static.wixstatic.com/media/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Multi-Family</span>
-<div class="property-name">Green Meadow Apartments</div>
-<div class="property-location">Birmingham, AL</div>
-</div>
-</div>
-<div class="property-card pop" data-cat="multi">
-<img alt="Park Crest" loading="lazy" src="https://static.wixstatic.com/media/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,enc_avif,quality_auto/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg"/>
-<div class="property-overlay">
-<span class="property-tag">Multi-Family</span>
-<div class="property-name">Park Crest</div>
-<div class="property-location">Birmingham, AL</div>
-</div>
-</div>
-</div>
-<!-- USPS & Keystones highlight -->
+</div><!-- USPS & Keystones highlight -->
 <div class="highlight-grid">
 <div class="highlight-card reveal">
 <span class="highlight-eyebrow">Commercial · Built 2000</span>
@@ -1373,6 +1362,60 @@ footer { background: #080808; padding: 64px 80px 36px; }
     intro.querySelector('.intro-close').addEventListener('click', function(e){ e.stopPropagation(); close(); });
     intro.querySelector('.intro-skip').addEventListener('click', function(e){ e.stopPropagation(); close(); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !finished) close(); });
+  })();
+
+  // Properties house explorer
+  (function(){
+    var PROPS = {
+      special: { title: 'Special Use', sub: 'Landmark and institutional builds — libraries, schools, and civic spaces that anchor a community.', items: [
+        ['Homewood Public Library','Homewood, AL','https://static.wixstatic.com/media/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg/v1/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_69c122e6e62f43a0a54b320b65a1b082~mv2.jpg'],
+        ['Vestavia Hills High School','Vestavia Hills, AL','https://static.wixstatic.com/media/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg/v1/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_d2364d8af84d4a7c9cb8677236768b4b~mv2.jpg']
+      ]},
+      multi: { title: 'Multi-Family', sub: 'Homes and apartment communities — the upper floors where families and residents live.', items: [
+        ['Duplex','Cullman, AL','https://static.wixstatic.com/media/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg/v1/crop/x_0,y_0,w_800,h_427/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_f28d5d90411c4977803d09c125a47522~mv2.jpg'],
+        ['Carousel Place Homes','Meridian, MS','https://static.wixstatic.com/media/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg/v1/crop/x_12,y_0,w_1076,h_597/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_5c71b8211d4842d1acf4f02733ec3aa6~mv2.jpg'],
+        ['Green Meadow Apartments','Birmingham, AL','https://static.wixstatic.com/media/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg/v1/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_6149e1a952c045a9b3928324cfd3d29a~mv2_d_6000_4000_s_4_2.jpg'],
+        ['Park Crest','Birmingham, AL','https://static.wixstatic.com/media/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg/v1/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_c014047704364be6b2965ddfa96e0744~mv2.jpg']
+      ]},
+      commercial: { title: 'Commercial', sub: 'Storefronts, offices, and mixed-use space — the ground floor where business happens.', items: [
+        ['Gulfway Terrace','New Orleans, LA','https://static.wixstatic.com/media/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg/v1/crop/x_7,y_0,w_3250,h_1786/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_8a32ed5a106b4922a5acf8d3ffe70d3c~mv2_d_3264_2448_s_4_2.jpg'],
+        ['Transportation Building','Birmingham, AL','https://static.wixstatic.com/media/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg/v1/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_d5cc2fb5f924415daef0bd4b5627b346~mv2.jpg']
+      ]},
+      medical: { title: 'Medical', sub: 'Hospitals and care facilities — the foundation of community health we help build.', items: [
+        ['Poplar Bluff Regional Medical Center','Poplar Bluff, MO','https://static.wixstatic.com/media/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg/v1/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_a031f83c9ef0477e9af2e8c5a3eae226~mv2.jpg'],
+        ["Physician's Regional Medical Center",'Naples, FL','https://static.wixstatic.com/media/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg/v1/fill/w_240,h_180,al_c,q_80,enc_avif,quality_auto/41e133_e75c71c533ea48dfbac31af773f1f7c7~mv2.jpg']
+      ]}
+    };
+    var parts = document.querySelectorAll('.house-part');
+    var results = document.getElementById('houseResults');
+    var elCat = document.getElementById('housePanelCat');
+    var elTitle = document.getElementById('housePanelTitle');
+    var elSub = document.getElementById('housePanelSub');
+    if(!parts.length || !results) return;
+    var arrow = '<span class="house-card-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>';
+
+    function select(cat){
+      var data = PROPS[cat];
+      if(!data) return;
+      parts.forEach(function(p){ p.classList.toggle('active', p.dataset.cat === cat); });
+      elCat.textContent = 'Now Building';
+      elTitle.textContent = data.title;
+      elSub.textContent = data.sub;
+      results.innerHTML = '';
+      data.items.forEach(function(it, i){
+        var card = document.createElement('div');
+        card.className = 'house-card';
+        card.innerHTML = '<div class="house-card-thumb"><img loading="lazy" src="'+it[2]+'" alt="'+it[0]+'"/></div>' +
+          '<div class="house-card-body"><div class="house-card-name">'+it[0]+'</div><div class="house-card-loc">'+it[1]+'</div></div>' + arrow;
+        card.addEventListener('click', function(){ var c=document.getElementById('contact'); if(c) c.scrollIntoView({behavior:'smooth'}); });
+        results.appendChild(card);
+        setTimeout(function(){ card.classList.add('in'); }, 60 + i*70);
+      });
+    }
+    parts.forEach(function(p){
+      p.addEventListener('click', function(){ select(p.dataset.cat); });
+      p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); select(p.dataset.cat); } });
+    });
   })();
 
 </script>
