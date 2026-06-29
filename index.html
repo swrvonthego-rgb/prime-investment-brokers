@@ -1300,6 +1300,11 @@ footer { background: #080808; padding: 64px 80px 36px; }
     var intro = document.getElementById('introVideo');
     var vid = document.getElementById('introVideoEl');
     if(!intro || !vid) return;
+    // play only once per visit
+    var seen = false;
+    try { seen = sessionStorage.getItem('introSeen') === '1'; } catch(e){}
+    if(seen){ if(intro.parentNode) intro.parentNode.removeChild(intro); return; }
+    try { sessionStorage.setItem('introSeen', '1'); } catch(e){}
     var muteBtn = intro.querySelector('.intro-mute');
     var iconMuted = muteBtn.querySelector('.icon-muted');
     var iconSound = muteBtn.querySelector('.icon-sound');
