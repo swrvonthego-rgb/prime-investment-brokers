@@ -1407,7 +1407,19 @@ footer { background: #080808; padding: 64px 80px 36px; }
         card.className = 'house-card';
         card.innerHTML = '<div class="house-card-thumb"><img loading="lazy" src="'+it[2]+'" alt="'+it[0]+'"/></div>' +
           '<div class="house-card-body"><div class="house-card-name">'+it[0]+'</div><div class="house-card-loc">'+it[1]+'</div></div>' + arrow;
-        card.addEventListener('click', function(){ var c=document.getElementById('contact'); if(c) c.scrollIntoView({behavior:'smooth'}); });
+        card.addEventListener('click', function(){
+          var lb = document.getElementById('teamLightbox');
+          if(!lb){ var c=document.getElementById('contact'); if(c) c.scrollIntoView({behavior:'smooth'}); return; }
+          var img = lb.querySelector('.lightbox-img');
+          var cap = lb.querySelector('.lightbox-caption');
+          img.src = it[2].split('/v1/')[0];   // full original image
+          img.alt = it[0];
+          cap.innerHTML = it[0] + ' &mdash; ' + it[1] +
+            '<span class="lightbox-hint">Click the &times; or anywhere to close</span>';
+          lb.classList.add('open');
+          lb.setAttribute('aria-hidden','false');
+          document.body.style.overflow = 'hidden';
+        });
         results.appendChild(card);
         setTimeout(function(){ card.classList.add('in'); }, 60 + i*70);
       });
