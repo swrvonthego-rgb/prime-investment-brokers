@@ -340,9 +340,40 @@ footer { background: #080808; padding: 64px 80px 36px; }
   .footer-top{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+/* INTRO VIDEO */
+.intro { position: fixed; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 4000; background: #000; overflow: hidden; box-shadow: 0 0 0 rgba(0,0,0,0); transition: width 0.8s cubic-bezier(0.6,0,0.2,1), height 0.8s cubic-bezier(0.6,0,0.2,1), bottom 0.8s cubic-bezier(0.6,0,0.2,1), right 0.8s cubic-bezier(0.6,0,0.2,1), border-radius 0.8s ease, box-shadow 0.8s ease, opacity 0.5s ease, visibility 0.5s; }
+.intro video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
+.intro.mini { width: min(360px, 84vw); height: min(202px, 47vw); bottom: 24px; right: 24px; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.55); }
+.intro.mini video { object-fit: contain; }
+.intro.closing { opacity: 0; visibility: hidden; pointer-events: none; }
+.intro-controls { position: absolute; top: 18px; right: 18px; display: flex; gap: 10px; z-index: 2; }
+.intro.mini .intro-controls { top: 8px; right: 8px; gap: 7px; }
+.intro-btn { width: 46px; height: 46px; border-radius: 50%; background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.3); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(5px); transition: width 0.4s ease, height 0.4s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease; padding: 0; }
+.intro.mini .intro-btn { width: 32px; height: 32px; }
+.intro-btn:hover { background: var(--crimson); border-color: var(--crimson); }
+.intro-close:hover { transform: rotate(90deg); }
+.intro-btn svg { width: 21px; height: 21px; }
+.intro.mini .intro-btn svg { width: 15px; height: 15px; }
+.intro-skip { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.25); border-radius: 50px; padding: 9px 22px; cursor: pointer; backdrop-filter: blur(5px); transition: all 0.25s ease; z-index: 2; }
+.intro-skip:hover { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+.intro.mini .intro-skip { display: none; }
 </style>
 </head>
 <body>
+<!-- INTRO VIDEO -->
+<div class="intro" id="introVideo" role="dialog" aria-label="Intro video">
+<video id="introVideoEl" src="./intro.mp4" autoplay muted playsinline preload="auto"></video>
+<div class="intro-controls">
+<button class="intro-btn intro-mute" type="button" aria-label="Unmute video">
+<svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+<svg class="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+</button>
+<button class="intro-btn intro-close" type="button" aria-label="Close video">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+</button>
+</div>
+<button class="intro-skip" type="button">Skip Intro</button>
+</div>
 <!-- NAV -->
 <nav>
 <a class="nav-logo" href="#">
@@ -1262,6 +1293,57 @@ footer { background: #080808; padding: 64px 80px 36px; }
     closeBtn.addEventListener('click', close);
     lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+  })();
+
+  // Intro video: fullscreen -> shrink at midway -> dismissable, mutable
+  (function(){
+    var intro = document.getElementById('introVideo');
+    var vid = document.getElementById('introVideoEl');
+    if(!intro || !vid) return;
+    var muteBtn = intro.querySelector('.intro-mute');
+    var iconMuted = muteBtn.querySelector('.icon-muted');
+    var iconSound = muteBtn.querySelector('.icon-sound');
+    var shrunk = false, finished = false;
+
+    document.body.style.overflow = 'hidden';      // lock scroll while fullscreen
+
+    // autoplay (muted required by browsers)
+    var p = vid.play();
+    if(p && p.catch){ p.catch(function(){ shrink(); }); }
+
+    function shrink(){
+      if(shrunk || finished) return;
+      shrunk = true;
+      intro.classList.add('mini');
+      document.body.style.overflow = '';          // let people browse while it plays
+    }
+    function close(){
+      finished = true;
+      intro.classList.add('closing');
+      document.body.style.overflow = '';
+      try { vid.pause(); } catch(e){}
+      setTimeout(function(){ if(intro.parentNode) intro.parentNode.removeChild(intro); }, 600);
+    }
+
+    // shrink once playback passes the halfway mark
+    vid.addEventListener('timeupdate', function(){
+      if(vid.duration && vid.currentTime >= vid.duration / 2) shrink();
+    });
+    // fallback: if metadata never loads, shrink after 6s
+    setTimeout(shrink, 8000);
+
+    vid.addEventListener('ended', close);
+
+    muteBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      vid.muted = !vid.muted;
+      iconMuted.style.display = vid.muted ? '' : 'none';
+      iconSound.style.display = vid.muted ? 'none' : '';
+      muteBtn.setAttribute('aria-label', vid.muted ? 'Unmute video' : 'Mute video');
+    });
+    intro.querySelector('.intro-close').addEventListener('click', function(e){ e.stopPropagation(); close(); });
+    intro.querySelector('.intro-skip').addEventListener('click', function(e){ e.stopPropagation(); close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !finished) close(); });
   })();
 
 </script>
