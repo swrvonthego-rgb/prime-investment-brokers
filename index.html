@@ -198,9 +198,9 @@ section { position: relative; }
 .team-header { text-align: center; padding: 0 80px; margin-bottom: 56px; }
 .team .section-headline { color: var(--dark); }
 .team-header .section-eyebrow { justify-content: center; }
-.rolodex { position: relative; display: flex; align-items: center; justify-content: center; padding: 20px 0 40px; perspective: 1200px; min-height: 520px; }
-.rolodex-stage { position: relative; width: 300px; height: 420px; transform-style: preserve-3d; }
-.rcard { position: absolute; top: 0; left: 0; width: 300px; height: 420px; border-radius: var(--radius-xl); background: var(--white); box-shadow: var(--shadow-card); overflow: hidden; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1), opacity 0.55s ease, box-shadow 0.55s ease; will-change: transform, opacity; backface-visibility: hidden; }
+.rolodex { position: relative; display: flex; align-items: center; justify-content: center; padding: 20px 0 40px; perspective: 1200px; min-height: 640px; }
+.rolodex-stage { position: relative; width: 320px; height: 540px; transform-style: preserve-3d; }
+.rcard { position: absolute; top: 0; left: 0; width: 320px; height: 540px; border-radius: var(--radius-xl); background: var(--white); box-shadow: var(--shadow-card); overflow: hidden; transition: transform 0.55s cubic-bezier(0.4,0.2,0.2,1), opacity 0.55s ease, box-shadow 0.55s ease; will-change: transform, opacity; backface-visibility: hidden; }
 .rcard[data-pos="0"] { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; z-index: 10; box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 4px 20px rgba(200,16,46,0.12); }
 .rcard[data-pos="-1"] { transform: translateX(-260px) scale(0.78) rotateY(20deg); opacity: 0.55; z-index: 5; }
 .rcard[data-pos="1"] { transform: translateX(260px) scale(0.78) rotateY(-20deg); opacity: 0.55; z-index: 5; }
@@ -208,8 +208,8 @@ section { position: relative; }
 .rcard[data-pos="2"] { transform: translateX(360px) scale(0.62) rotateY(-30deg); opacity: 0.2; z-index: 2; pointer-events: none; }
 .rcard[data-pos="far"] { transform: translateX(0) scale(0.4); opacity: 0; z-index: 0; pointer-events: none; }
 .rcard::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--crimson); z-index:2; }
-.rcard-photo { width: 100%; height: 240px; overflow: hidden; background: var(--dark); }
-.rcard-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
+.rcard-photo { width: 100%; height: 380px; overflow: hidden; background: var(--dark); }
+.rcard-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
 .rcard[data-pos="0"] .rcard-photo img { transform: scale(1.03); }
 /* TEAM LIGHTBOX */
 .lightbox { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 48px; background: rgba(8,8,8,0); visibility: hidden; opacity: 0; transition: opacity 0.4s ease, background 0.4s ease, visibility 0.4s; }
@@ -335,7 +335,7 @@ footer { background: #080808; padding: 64px 80px 36px; }
   .highlight-grid{grid-template-columns:1fr}
 }
 @media(max-width:500px){
-  .rcard{width:260px;height:400px} .rolodex-stage{width:260px;height:400px}
+  .rcard{width:280px;height:500px} .rolodex-stage{width:280px;height:500px} .rcard-photo{height:340px}
   .process-steps{grid-template-columns:1fr}
   .footer-top{grid-template-columns:1fr}
 }
