@@ -165,12 +165,19 @@ section { position: relative; }
 .property-card:hover .property-overlay::after { opacity: 1; max-height: 26px; margin-top: 14px; transform: translateY(0); }
 /* Highlight cards */
 .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
-.highlight-card { background: var(--off-white); padding: 32px 36px; border-left: 3px solid var(--crimson); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); transition: transform 0.25s ease, box-shadow 0.25s ease; }
-.highlight-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+.highlight-card { position: relative; background: var(--off-white); padding: 34px 38px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.4s ease; cursor: pointer; }
+.highlight-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--crimson); transition: width 0.45s cubic-bezier(0.2,0.7,0.2,1); }
+.highlight-card:hover::before { width: 7px; }
+.highlight-card::after { content: ''; position: absolute; top: -40%; right: -20%; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(200,16,46,0.10) 0%, transparent 70%); opacity: 0; transform: scale(0.6); transition: opacity 0.5s ease, transform 0.5s ease; }
+.highlight-card:hover::after { opacity: 1; transform: scale(1); }
+.highlight-card:hover { transform: translateY(-6px); box-shadow: 0 22px 54px rgba(0,0,0,0.12), 0 4px 16px rgba(200,16,46,0.12); }
+.highlight-card > * { position: relative; z-index: 1; }
 .highlight-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--crimson); display: block; margin-bottom: 10px; }
 .highlight-name { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--dark); margin-bottom: 10px; }
 .highlight-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
-.highlight-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); }
+.highlight-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gold); display: flex; align-items: baseline; gap: 10px; }
+.highlight-value::after { content: 'Inquire \\2192'; font-family: var(--font-body, inherit); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--crimson); opacity: 0; transform: translateX(-6px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.highlight-card:hover .highlight-value::after { opacity: 1; transform: translateX(0); }
 .properties-cta { text-align: center; }
 .prop-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
 .prop-filter { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 20px; border-radius: 50px; border: 1px solid rgba(0,0,0,0.12); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.25s ease; font-family: inherit; }
@@ -1238,7 +1245,8 @@ footer { background: #080808; padding: 64px 80px 36px; }
   (function(){
     var btns = document.querySelectorAll('.prop-filter');
     var cards = document.querySelectorAll('.property-card');
-    cards.forEach(function(c){
+    var clickables = document.querySelectorAll('.property-card, .highlight-card');
+    clickables.forEach(function(c){
       c.addEventListener('click', function(){
         var el = document.getElementById('contact');
         if(el) el.scrollIntoView({behavior:'smooth'});
